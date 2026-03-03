@@ -1,0 +1,28 @@
+{
+    "cSpell.userWords": [
+        "Brauns",
+        "gravemind",
+        "Intune"
+    ],
+    "excalidraw.theme": "dark",
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "workbench.settings.applyToAllProfiles": [
+        "editor.fontFamily",
+        "ansible.python.interpreterPath"
+    ],
+    "yaml.customTags": [
+        "!secret scalar"
+    ],
+    "[dockercompose]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.autoIndent": "advanced",
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "[github-actions-workflow]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    }
+}

@@ -1,0 +1,88 @@
+" ----------------------------------------------------------------------
+"  File: .vimrc
+"  Info: Vim configuration file
+"  Author: Adam Brauns (@AdamBrauns)
+" ----------------------------------------------------------------------
+
+" Disable compatibility with vi
+set nocompatible
+
+" Enable plugins and load plugin/indent for the detected file type
+filetype plugin indent on
+
+" Syntax highlighting
+syntax on
+
+" Line numbers
+set relativenumber
+
+" Status bar status
+set laststatus=2
+
+" Show file stats
+set ruler
+
+" Blink cursor on error instead of beeping
+set visualbell
+
+" Encoding
+set encoding=utf-8
+
+" Parsing and execution of modelines
+set modelines=0
+
+" Optimize Vim
+set ttyfast
+
+" Keep 3 lines above/below when scrolling
+set scrolloff=3
+
+" Keep 5 chars left/right when scrolling
+set sidescrolloff=5
+
+" Exclude line number when copying with mouse
+set mouse+=a
+
+" Backspace motion
+set backspace=indent,eol,start
+
+" Match brackets
+set matchpairs+=<:> " use % to jump between pairs
+
+" Do not skip wrapped lines
+nnoremap j gj
+nnoremap k gk
+
+" Show mode and cmd
+set showmode
+set showcmd
+
+" Searching
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set showmatch
+nnoremap / /\v
+vnoremap / /\v
+
+" White space
+set wrap
+set textwidth=80
+set formatoptions=tcqrn1
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set noshiftround
+set display+=lastline
+set linebreak
+
+" Color scheme (terminal)
+set t_Co=256
+set background=dark
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+" put https://raw.github.com/altercation/vim-colors-solarized/master/colors/solarized.vim
+" in ~/.vim/colors/ and uncomment:
+" colorscheme solarized

@@ -1,0 +1,32 @@
+#----------------------------------------------------------------------
+# File: config
+# Author: Adam Brauns (@AdamBrauns)
+# Description: SSH client configuration for multiple hosts
+#----------------------------------------------------------------------
+
+# Default settings for all SSH connections
+Host *
+    ForwardX11 no
+
+# Personal GitHub account
+Host github.com
+    HostName github.com
+    IdentityFile <YOUR_GITHUB_SSH_KEY>  # e.g., ~/.ssh/id_ed25519
+    IdentitiesOnly yes
+
+# Work GitHub account
+Host github-work
+    HostName github.com
+    IdentityFile <YOUR_WORK_GITHUB_SSH_KEY>  # e.g., ~/.ssh/id_ed25519_work
+    IdentitiesOnly yes
+
+# Azure DevOps
+Host ssh.dev.azure.com
+    HostName ssh.dev.azure.com
+    IdentityFile <YOUR_AZURE_SSH_KEY>  # e.g., ~/.ssh/id_ed25519_azure
+    IdentitiesOnly yes
+
+# Homelab
+Host <YOUR_HOMELAB_IP>  # e.g., 192.168.1.* or 10.0.0.*
+    User <YOUR_USERNAME>
+    IdentityFile <YOUR_HOMELAB_SSH_KEY>  # e.g., ~/.ssh/id_ed25519

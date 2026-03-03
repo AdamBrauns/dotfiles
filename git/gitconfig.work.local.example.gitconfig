@@ -1,0 +1,10 @@
+#----------------------------------------------------------------------
+# File: .gitconfig.work
+# Info: Git configuration file for work use
+# Author: Adam Brauns (@AdamBrauns)
+#----------------------------------------------------------------------
+
+# Work username and email
+[user]
+  name = John Doe
+  email = john.doe@example.com

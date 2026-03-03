@@ -1,0 +1,41 @@
+#----------------------------------------------------------------------
+# File: alacritty.toml
+# Info: Alacritty configuration file
+# Author: Adam Brauns (@AdamBrauns)
+#----------------------------------------------------------------------
+
+[general]
+import = ["~/.config/alacritty/themes/blood_moon.toml"]
+
+live_config_reload = true
+
+[cursor]
+style = { shape = "Block", blinking = "Off" }
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 20
+
+[mouse]
+hide_when_typing = true
+bindings = [{ mouse = "Right", action = "Paste" }]
+
+[selection]
+save_to_clipboard = true
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[terminal]
+shell.program = "/opt/homebrew/bin/bash"
+
+[window]
+decorations = "Full"
+decorations_theme_variant = "Dark"
+dimensions = { columns = 100, lines = 35 }
+opacity = 0.9
+padding = { x = 20, y = 20 }
+title = ""

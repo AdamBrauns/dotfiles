@@ -1,0 +1,17 @@
+#----------------------------------------------------------------------
+# File: .gitconfig.personal
+# Info: Git configuration file for personal use
+# Author: Adam Brauns (@AdamBrauns)
+#----------------------------------------------------------------------
+
+# Personal username and email
+[user]
+  name = John Doe
+  email = john.doe@example.com
+  signingkey = john.doe@example.com
+
+[commit]
+  gpgsign = true
+
+[tag]
+  gpgsign = true
