@@ -1,0 +1,48 @@
+#----------------------------------------------------------------------
+# File: .bashrc
+# Info: bashrc for non-login interactive shells
+# Author: Adam Brauns (@AdamBrauns)
+#----------------------------------------------------------------------
+
+# Set brew shell environment if homebrew is installed
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -x /usr/local/bin/brew ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
+
+# Initialize starship if available
+if command -v starship &> /dev/null; then
+  eval "$(starship init bash)"
+fi
+
+# Source global definitions
+if [[ -f /etc/bashrc ]]; then
+  . /etc/bashrc
+fi
+
+# Source environment
+if [[ -f ~/.bash_env ]]; then
+  . ~/.bash_env
+fi
+
+# Source secret environment variables
+if [[ -f ~/.bash_env_secret ]]; then
+  . ~/.bash_env_secret
+fi
+
+# Source aliases
+if [[ -f ~/.bash_aliases ]]; then
+  . ~/.bash_aliases
+fi
+
+# Enable bash completion
+if [[ -s $HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh ]]; then
+  . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
+fi
+
+# Source fzf-git if available
+if [[ -f ~/.scripts/fzf-git.sh ]]; then
+  . ~/.scripts/fzf-git.sh
+fi
+

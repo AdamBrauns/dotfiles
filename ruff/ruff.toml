@@ -1,0 +1,12 @@
+#----------------------------------------------------------------------
+# File: ruff.toml
+# Info: Ruff configuration file
+# Author: Adam Brauns (@AdamBrauns)
+#----------------------------------------------------------------------
+
+[lint]
+# In addition to the default rules, enable:
+#   1) flynt (FLY)
+#   2) isort (I)
+#   3) pyupgrade (UP)
+extend-select = ["FLY", "I", "UP"]

@@ -1,0 +1,38 @@
+#----------------------------------------------------------------------
+# File: .gitconfig
+# Info: User defined git configuration file
+# Author: Adam Brauns (@AdamBrauns)
+#----------------------------------------------------------------------
+
+[includeIf "gitdir:/path/to/personal/repos/"]
+  path = ~/.gitconfig.personal
+[includeIf "gitdir:/path/to/work/repos/"]
+  path = ~/.gitconfig.work
+
+[alias]
+  amend    = commit --amend --no-edit
+  b        = branch
+  ciaclean = !git branch --merged origin/main | grep -vE '^\\s*(\\*|main|develop)' | xargs -n 1 git branch -d
+  c        = commit
+  d        = diff
+  lg       = log --oneline --graph
+  lgone    = log --oneline
+  p        = push
+  pf       = push -f
+  s        = status -s
+  sma      = submodule add
+  sms      = submodule status
+  smu      = submodule update --init --recursive
+
+[color]
+  ui = auto
+
+[core]
+  autocrlf = input
+
+[push]
+  default = simple
+  recurseSubmodules = on-demand
+
+[submodule]
+  recurse = true

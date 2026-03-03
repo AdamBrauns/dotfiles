@@ -1,0 +1,26 @@
+#----------------------------------------------------------------------
+# File: .bash_env
+# Info: Bash environment
+# Author: Adam Brauns (@AdamBrauns)
+#----------------------------------------------------------------------
+
+# Shell Configuration
+export BASH_SILENCE_DEPRECATION_WARNING=1
+export SHELL="$(brew --prefix)/bin/bash"
+
+# Editor Configuration
+export EDITOR=vim
+
+# Path Configuration
+export PATH=$PATH:$HOME/.local/bin:$HOME/bin:/usr/local/bin
+
+# History Configuration
+export HISTSIZE=1000
+export HISTFILESIZE=2000
+export HISTCONTROL=ignoreboth
+
+# GPG Configuration
+export GPG_TTY=$(tty)
+
+# Homebrew Configuration
+export HOMEBREW_NO_ANALYTICS=1

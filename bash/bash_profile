@@ -1,0 +1,15 @@
+#----------------------------------------------------------------------
+# File: .bash_profile
+# Info: Bash profile for user login
+# Author: Adam Brauns (@AdamBrauns)
+#----------------------------------------------------------------------
+
+# Source global definitions
+if [[ -f /etc/bash_profile ]]; then
+  . /etc/bash_profile
+fi
+
+# Get the aliases and functions
+if [[ -f ~/.bashrc ]]; then
+  . ~/.bashrc
+fi

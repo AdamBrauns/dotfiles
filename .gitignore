@@ -1,0 +1,37 @@
+# Environment-specific configs (use *.local.example.* files as templates)
+# Ignore all .local. files (with or without extensions)
+*.local.*
+*.local
+# But keep .example files
+!*.local.example.*
+!*.local.example
+
+# SSH keys and sensitive files (NEVER commit these!)
+ssh/id_*
+ssh/*.pem
+ssh/*.key
+ssh/known_hosts
+ssh/authorized_keys
+
+# GnuPG private keys
+gnupg/private-keys-v1.d/
+gnupg/pubring.kbx
+gnupg/trustdb.gpg
+gnupg/*.key
+gnupg/*.gpg
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Backup files created by install script
+*.backup.*
+
+# Homebrew lock file (machine-specific)
+homebrew/Brewfile.lock.json
+
+# Editor temporary files
+*.swp
+*.swo
+*~
+.*.tmp
