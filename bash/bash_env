@@ -2,11 +2,13 @@
 # File: .bash_env
 # Info: Bash environment
 # Author: Adam Brauns (@AdamBrauns)
+# shellcheck shell=bash
 #----------------------------------------------------------------------
 
 # Shell Configuration
 export BASH_SILENCE_DEPRECATION_WARNING=1
-export SHELL="$(brew --prefix)/bin/bash"
+SHELL="$(brew --prefix)/bin/bash"
+export SHELL
 
 # Editor Configuration
 export EDITOR=vim
@@ -20,7 +22,8 @@ export HISTFILESIZE=2000
 export HISTCONTROL=ignoreboth
 
 # GPG Configuration
-export GPG_TTY=$(tty)
+GPG_TTY=$(tty)
+export GPG_TTY
 
 # Homebrew Configuration
 export HOMEBREW_NO_ANALYTICS=1

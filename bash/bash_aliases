@@ -2,6 +2,7 @@
 # File: .bash_aliases
 # Info: User defined bash aliases
 # Author: Adam Brauns (@AdamBrauns)
+# shellcheck shell=bash
 #----------------------------------------------------------------------
 
 # General
@@ -37,10 +38,10 @@ else
 fi
 
 # Change Directory
-alias cdgit="cd ${DIR_GIT}"
-alias cdmono="cd ${DIR_GIT_MONO}"
-alias cdpers="cd ${DIR_GIT_PERSONAL}"
-alias cdwork="cd ${DIR_GIT_WORK}"
+alias cdgit='cd ${DIR_GIT}'
+alias cdmono='cd ${DIR_GIT_MONO}'
+alias cdpers='cd ${DIR_GIT_PERSONAL}'
+alias cdwork='cd ${DIR_GIT_WORK}'
 
 # Ansible
 alias ansdecrypt='ansible-vault decrypt'
@@ -99,31 +100,37 @@ alias gbs="git branch --sort=-committerdate --color=always \
        --preview-window right,70% \
   | sed 's/.* //' \
   | xargs git checkout"
+
 # Stage selected changed/untracked files (multi-select with TAB)
 alias ga="git ls-files -m -o --exclude-standard \
   | fzf -m --preview 'git diff --color=always {}' \
        --preview-window right,70% \
        --header 'Stage files (multi-select with TAB)' \
   | xargs git add"
+
 # Interactive interactive add --patch (great for partial staging)
 alias gap="git ls-files -m --exclude-standard \
   | fzf -m --preview 'git diff --color=always {}' \
        --preview-window right,70% \
        --header 'Partial staging (multi-select with TAB)' \
   | xargs -o git add -p"
+
 # Unstage selected staged files
 alias gus="git diff --name-only --cached \
   | fzf -m --preview 'git diff --color=always --cached {}' \
        --preview-window right,70% \
        --header 'Unstage files (multi-select with TAB)' \
   | xargs git restore --staged"
+
 # Review staged changes and commit
 alias gc="git diff --name-only --cached \
   | fzf --preview 'git diff --color=always --cached {}' \
        --preview-window right,70% \
        --header 'Review staged changes (Enter to commit, Esc to cancel)' \
   > /dev/null && git commit"
+
 # Interactive status viewer with file diffs
+# shellcheck disable=SC2142,SC2154
 alias gs="git status --short \
   | fzf --ansi --preview \
        'f=\$(echo {} | awk \"{print \\\$2}\"); \
@@ -131,13 +138,16 @@ alias gs="git status --short \
        --preview-window right,70% \
        --header 'Git status (view changes)' \
   > /dev/null"
+
 # Discard changes in selected files (restore to last commit)
 alias gr="git ls-files -m \
   | fzf -m --preview 'git diff --color=always {}' \
        --preview-window right,70% \
        --header 'Discard changes (multi-select with TAB)' \
   | xargs git restore"
+
 # Browse commit history with diffs
+# shellcheck disable=SC2142
 alias gl="git log --oneline --color=always \
   | fzf --ansi --preview \
        'git show --color=always \$(echo {} | awk \"{print \\\$1}\")' \
