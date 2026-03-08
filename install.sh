@@ -311,6 +311,7 @@ uninstall() {
     "$HOME/.bash_aliases"
     "$HOME/.bash_env"
     "$HOME/.bash_env_secret"
+    "$HOME/.shellcheckrc"
     "$HOME/.scripts"
     "$HOME/.gitconfig"
     "$HOME/.gitconfig.personal"
@@ -372,6 +373,7 @@ install() {
   create_symlink "$DOTFILES_DIR/bash/bash_profile" "$HOME/.bash_profile"
   create_symlink "$DOTFILES_DIR/bash/bash_aliases" "$HOME/.bash_aliases"
   create_symlink "$DOTFILES_DIR/bash/bash_env" "$HOME/.bash_env"
+  create_symlink "$DOTFILES_DIR/bash/shellcheckrc" "$HOME/.shellcheckrc"
   install_optional_config "$DOTFILES_DIR/bash/bash_env_secret.local" "$HOME/.bash_env_secret"
 
   # Scripts

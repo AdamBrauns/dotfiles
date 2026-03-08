@@ -2,6 +2,7 @@
 # File: .bash_profile
 # Info: Bash profile for user login
 # Author: Adam Brauns (@AdamBrauns)
+# shellcheck shell=bash
 #----------------------------------------------------------------------
 
 # Source global definitions

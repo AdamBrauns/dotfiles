@@ -1,0 +1,11 @@
+#----------------------------------------------------------------------
+# File: .shellcheckrc
+# Info: Shellcheck configuration
+# Author: Adam Brauns (@AdamBrauns)
+# shellcheck disable=all
+#----------------------------------------------------------------------
+
+# Disable warnings for following sourced files
+# SC1090: Can't follow non-constant source
+# SC1091: Not following external files
+disable=SC1090,SC1091
