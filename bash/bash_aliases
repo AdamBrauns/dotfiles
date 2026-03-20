@@ -56,6 +56,16 @@ if command -v brew &> /dev/null; then
   alias brewclean='brew autoremove && brew cleanup'
 fi
 
+# Claude
+if command -v claude &> /dev/null; then
+  alias cc='claude'
+fi
+
+# Codex
+if command -v codex &> /dev/null; then
+  alias cx='codex'
+fi
+
 # Container
 if command -v container &> /dev/null; then
   alias cnt='container'
@@ -90,6 +100,10 @@ fi
 if command -v kubectl &> /dev/null; then
   alias k='kubectl'
 fi
+
+# SSH
+alias sshpi='ssh ${HOST_PI}'
+alias sshprox='ssh ${HOST_PROX}'
 
 # Git
 # Interactive branch switcher with fzf (shows recent branches, preview diffs)
