@@ -4,7 +4,7 @@
 # Author: Adam Brauns (@AdamBrauns)
 #----------------------------------------------------------------------
 
-.PHONY: help install uninstall dry-run check clean verbose
+.PHONY: help install uninstall dry-install dry-uninstall check clean verbose lint
 
 .DEFAULT_GOAL := help
 
@@ -27,27 +27,28 @@ verbose: ## Install with verbose output
 uninstall: ## Remove all dotfiles symlinks
 	@$(SCRIPT) --uninstall
 
-dry-install: ## Preview installation changes
-	@$(SCRIPT) --dry-run --verbose
+dry-install: ## Preview installation changes (pass VERBOSE=1 for detail)
+	@$(SCRIPT) --dry-run $(if $(VERBOSE),--verbose,)
 
-dry-uninstall: ## Preview uninstallation changes
-	@$(SCRIPT) --uninstall --dry-run --verbose
+dry-uninstall: ## Preview uninstallation changes (pass VERBOSE=1 for detail)
+	@$(SCRIPT) --uninstall --dry-run $(if $(VERBOSE),--verbose,)
 
 check: ## Verify dependencies are installed
-	@command -v ln >/dev/null 2>&1 && \
-		command -v mkdir >/dev/null 2>&1 && \
-		command -v chmod >/dev/null 2>&1 && \
-		command -v date >/dev/null 2>&1 && \
-		command -v readlink >/dev/null 2>&1 && \
-		echo "✓ All dependencies available" || \
-		echo "✗ Missing dependencies - run script to see details"
+	@for cmd in ln mkdir chmod date readlink; do \
+		command -v $$cmd >/dev/null 2>&1 || { echo "✗ Missing: $$cmd"; exit 1; }; \
+	done && echo "✓ All dependencies available"
+
+lint: ## Run shellcheck on install.sh
+	@shellcheck install.sh && echo "✓ shellcheck passed"
 
 clean: ## Remove backup files created by installer
-	@echo "Searching for backup files..."
-	@find ~ -maxdepth 2 -name "*.backup.*" -type f 2>/dev/null | while read -r f; do \
-		echo "  Removing: $$f"; \
-		rm "$$f"; \
-	done || echo "  No backup files found"
-	@echo "✓ Cleanup complete"
-
-.SILENT: help
+	@echo "Searching for backup files..."; \
+	files=$$(find ~ ~/.config ~/.gnupg ~/.ssh -maxdepth 1 -name "*.backup.*" -type f 2>/dev/null); \
+	if [ -z "$$files" ]; then \
+		echo "  No backup files found"; \
+	else \
+		echo "$$files" | while IFS= read -r f; do \
+			echo "  Removing: $$f"; rm "$$f"; \
+		done; \
+		echo "✓ Cleanup complete"; \
+	fi

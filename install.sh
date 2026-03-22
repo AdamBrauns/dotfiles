@@ -27,14 +27,14 @@
 # Description: Symlinks dotfiles from this repo to $HOME
 #----------------------------------------------------------------------
 
-set -u # Exit on undefined variables
+set -euo pipefail
 
 # Colors for output
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+readonly RED='\033[0;31m'
+readonly GREEN='\033[0;32m'
+readonly YELLOW='\033[1;33m'
+readonly BLUE='\033[0;34m'
+readonly NC='\033[0m' # No Color
 
 # Get the directory where this script is located
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -54,6 +54,32 @@ LINKS_REMOVED=0
 # Security constants
 readonly DIR_PERMISSIONS=700
 readonly FILE_PERMISSIONS=600
+
+# Symlink map: "type|relative_source|absolute_target"
+#   type "required" — always link; error if source is missing
+#   type "optional" — link only if source exists (e.g. local/secret files)
+SYMLINK_MAP=(
+  "required|bash/bashrc|$HOME/.bashrc"
+  "required|bash/bash_profile|$HOME/.bash_profile"
+  "required|bash/bash_aliases|$HOME/.bash_aliases"
+  "required|bash/bash_env|$HOME/.bash_env"
+  "required|bash/shellcheckrc|$HOME/.shellcheckrc"
+  "optional|bash/bash_env_secret.local|$HOME/.bash_env_secret"
+  "required|scripts|$HOME/.scripts"
+  "optional|git/gitconfig.local.gitconfig|$HOME/.gitconfig"
+  "optional|git/gitconfig.personal.local.gitconfig|$HOME/.gitconfig.personal"
+  "optional|git/gitconfig.work.local.gitconfig|$HOME/.gitconfig.work"
+  "required|vim/vimrc|$HOME/.vimrc"
+  "required|tmux/tmux.conf|$HOME/.tmux.conf"
+  "required|homebrew/Brewfile|$HOME/.Brewfile"
+  "required|alacritty|$HOME/.config/alacritty"
+  "required|rectangle|$HOME/.config/rectangle"
+  "required|ruff|$HOME/.config/ruff"
+  "required|starship/starship.toml|$HOME/.config/starship.toml"
+  "optional|deck/deck.local.yaml|$HOME/.deck.yaml"
+  "required|gnupg/gpg-agent.conf|$HOME/.gnupg/gpg-agent.conf"
+  "optional|ssh/config.local|$HOME/.ssh/config"
+)
 
 # Show usage information
 show_help() {
@@ -123,23 +149,23 @@ check_dependencies() {
   log_info "All dependencies are available."
 }
 
-# Cross-platform readlink that resolves symlinks
+# Cross-platform symlink resolution: prefers realpath, falls back to readlink -f,
+# then manually resolves relative links (needed on older macOS without coreutils).
 resolve_link() {
   local target="$1"
 
-  # Try readlink -f (Linux)
-  if readlink -f "$target" 2>/dev/null; then
-    return 0
+  if command -v realpath &>/dev/null; then
+    realpath "$target" 2>/dev/null && return
   fi
 
-  # Fall back to manual resolution (macOS)
-  local link
-  link=$(readlink "$target" 2>/dev/null) || {
-    echo "$target"
-    return 0
-  }
+  if readlink -f "$target" 2>/dev/null; then
+    return
+  fi
 
-  # If relative path, make it absolute
+  # Manual fallback for macOS without coreutils
+  local link
+  link=$(readlink "$target" 2>/dev/null) || { echo "$target"; return; }
+
   if [[ "$link" != /* ]]; then
     link="$(dirname "$target")/$link"
   fi
@@ -152,10 +178,9 @@ create_symlink() {
   local source="$1"
   local target="$2"
 
-  # Validate source exists
-  if [[ ! -e "$source" && ! -d "$source" ]]; then
+  if [[ ! -e "$source" ]]; then
     log_error "Source does not exist: $source"
-    ((LINKS_FAILED++))
+    LINKS_FAILED=$(( LINKS_FAILED + 1 ))
     return 1
   fi
 
@@ -164,70 +189,45 @@ create_symlink() {
     return 0
   fi
 
-  # Create parent directory if it doesn't exist
   mkdir -p "$(dirname "$target")"
 
   if [[ -L "$target" ]]; then
-    # If it's already a symlink
     local current_source
     current_source=$(resolve_link "$target")
     if [[ "$current_source" == "$source" ]]; then
       log_info "Already linked: $target"
-      ((LINKS_SKIPPED++))
+      LINKS_SKIPPED=$(( LINKS_SKIPPED + 1 ))
       return 0
-    else
-      log_warning "Symlink exists but points elsewhere: $target -> $current_source"
-      if [[ "$DRY_RUN" == true ]]; then
-        log_dry_run "Would prompt to replace symlink"
-        return 0
-      fi
-      read -p "Replace it? (y/N) " -n 1 -r
-      echo
-      if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-        log_info "Skipping: $target"
-        ((LINKS_SKIPPED++))
-        return 0
-      fi
-      rm "$target"
     fi
-  elif [[ -e "$target" || -d "$target" ]]; then
-    # If file/directory exists
+    log_warning "Symlink exists but points elsewhere: $target -> $current_source"
+    read -p "Replace it? (y/N) " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+      log_info "Skipping: $target"
+      LINKS_SKIPPED=$(( LINKS_SKIPPED + 1 ))
+      return 0
+    fi
+    rm "$target"
+  elif [[ -e "$target" ]]; then
     log_warning "File/directory already exists: $target"
-    if [[ "$DRY_RUN" == true ]]; then
-      log_dry_run "Would prompt to backup and replace: $target"
-      return 0
-    fi
     read -p "Backup and replace? (y/N) " -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
       local backup
       backup="${target}.backup.$(date +%Y%m%d_%H%M%S)"
       mv "$target" "$backup"
-      ((BACKUPS_CREATED++))
+      BACKUPS_CREATED=$(( BACKUPS_CREATED + 1 ))
       log_success "Backed up to: $backup"
     else
       log_info "Skipping: $target"
-      ((LINKS_SKIPPED++))
+      LINKS_SKIPPED=$(( LINKS_SKIPPED + 1 ))
       return 0
     fi
   fi
 
   ln -s "$source" "$target"
-  ((LINKS_CREATED++))
+  LINKS_CREATED=$(( LINKS_CREATED + 1 ))
   log_success "Linked: $target -> $source"
-}
-
-# Install optional config file with .example fallback
-install_optional_config() {
-  local source="$1"
-  local target="$2"
-  local example="${source}.example"
-
-  if [[ -f "$source" ]]; then
-    create_symlink "$source" "$target"
-  else
-    log_warning "$(basename "$source") not found. Copy $(basename "$example") and customize it."
-  fi
 }
 
 # Set secure permissions on sensitive directories
@@ -241,23 +241,16 @@ ensure_secure_directory() {
     fi
     return 0
   fi
-  if [[ ! -d "$dir" ]]; then
-    mkdir -p "$dir"
-    chmod "$DIR_PERMISSIONS" "$dir"
-    log_info "Created directory with permissions $DIR_PERMISSIONS: $dir"
-  else
-    chmod "$DIR_PERMISSIONS" "$dir"
-    log_info "Set permissions $DIR_PERMISSIONS on $dir"
-  fi
+  mkdir -p "$dir"
+  chmod "$DIR_PERMISSIONS" "$dir"
+  log_info "Set permissions $DIR_PERMISSIONS on $dir"
 }
 
 # Set secure permissions on sensitive files
 ensure_secure_file() {
   local file="$1"
   if [[ "$DRY_RUN" == true ]]; then
-    if [[ -f "$file" ]]; then
-      log_dry_run "Would set permissions $FILE_PERMISSIONS on $file"
-    fi
+    [[ -f "$file" ]] && log_dry_run "Would set permissions $FILE_PERMISSIONS on $file"
     return 0
   fi
   if [[ -f "$file" ]]; then
@@ -272,17 +265,16 @@ remove_symlink() {
 
   if [[ ! -L "$target" ]]; then
     log_info "Not a symlink, skipping: $target"
-    ((LINKS_SKIPPED++))
+    LINKS_SKIPPED=$(( LINKS_SKIPPED + 1 ))
     return 0
   fi
 
   local current_source
   current_source=$(resolve_link "$target")
 
-  # Check if it points to our dotfiles directory
   if [[ "$current_source" != "$DOTFILES_DIR"* ]]; then
     log_warning "Symlink does not point to dotfiles, skipping: $target"
-    ((LINKS_SKIPPED++))
+    LINKS_SKIPPED=$(( LINKS_SKIPPED + 1 ))
     return 0
   fi
 
@@ -292,53 +284,25 @@ remove_symlink() {
   fi
 
   rm "$target"
-  ((LINKS_REMOVED++))
+  LINKS_REMOVED=$(( LINKS_REMOVED + 1 ))
   log_success "Removed: $target"
 }
 
 # Uninstall all dotfiles symlinks
 uninstall() {
-  if [[ "$DRY_RUN" == true ]]; then
-    echo -e "${YELLOW}=== DRY RUN MODE - No changes will be made ===${NC}"
-    echo ""
-  fi
+  [[ "$DRY_RUN" == true ]] && echo -e "${YELLOW}=== DRY RUN MODE - No changes will be made ===${NC}\n"
   log_info "Starting dotfiles uninstallation..."
+  log_info "Checking ${#SYMLINK_MAP[@]} potential symlinks..."
 
-  # Define all symlinks that may have been created
-  local symlinks=(
-    "$HOME/.bashrc"
-    "$HOME/.bash_profile"
-    "$HOME/.bash_aliases"
-    "$HOME/.bash_env"
-    "$HOME/.bash_env_secret"
-    "$HOME/.shellcheckrc"
-    "$HOME/.scripts"
-    "$HOME/.gitconfig"
-    "$HOME/.gitconfig.personal"
-    "$HOME/.gitconfig.work"
-    "$HOME/.vimrc"
-    "$HOME/.tmux.conf"
-    "$HOME/.Brewfile"
-    "$HOME/.config/alacritty"
-    "$HOME/.config/rectangle"
-    "$HOME/.config/ruff"
-    "$HOME/.config/starship.toml"
-    "$HOME/.deck.yaml"
-    "$HOME/.gnupg/gpg-agent.conf"
-    "$HOME/.ssh/config"
-  )
-
-  log_info "Checking ${#symlinks[@]} potential symlinks..."
-
-  for link in "${symlinks[@]}"; do
-    if [[ -e "$link" || -L "$link" ]]; then
-      remove_symlink "$link"
+  for entry in "${SYMLINK_MAP[@]}"; do
+    local target="${entry##*|}"
+    if [[ -e "$target" || -L "$target" ]]; then
+      remove_symlink "$target"
     else
-      log_info "Does not exist, skipping: $link"
+      log_info "Does not exist, skipping: $target"
     fi
   done
 
-  # Print summary
   echo ""
   if [[ "$DRY_RUN" == true ]]; then
     echo -e "${YELLOW}=== DRY RUN COMPLETE ===${NC}"
@@ -347,7 +311,6 @@ uninstall() {
     echo -e "${RED}Removed:${NC}  $LINKS_REMOVED symlinks"
     echo -e "${YELLOW}Skipped:${NC}  $LINKS_SKIPPED files"
     echo ""
-
     if [[ $LINKS_REMOVED -gt 0 ]]; then
       log_success "Dotfiles uninstalled successfully!"
     else
@@ -358,69 +321,36 @@ uninstall() {
 
 # Installation
 install() {
-  # Check dependencies first
   check_dependencies
 
-  if [[ "$DRY_RUN" == true ]]; then
-    echo -e "${YELLOW}=== DRY RUN MODE - No changes will be made ===${NC}"
-    echo ""
-  fi
+  [[ "$DRY_RUN" == true ]] && echo -e "${YELLOW}=== DRY RUN MODE - No changes will be made ===${NC}\n"
   log_info "Starting dotfiles installation from: $DOTFILES_DIR"
 
-  # Bash files
-  log_info "Installing Bash configuration..."
-  create_symlink "$DOTFILES_DIR/bash/bashrc" "$HOME/.bashrc"
-  create_symlink "$DOTFILES_DIR/bash/bash_profile" "$HOME/.bash_profile"
-  create_symlink "$DOTFILES_DIR/bash/bash_aliases" "$HOME/.bash_aliases"
-  create_symlink "$DOTFILES_DIR/bash/bash_env" "$HOME/.bash_env"
-  create_symlink "$DOTFILES_DIR/bash/shellcheckrc" "$HOME/.shellcheckrc"
-  install_optional_config "$DOTFILES_DIR/bash/bash_env_secret.local" "$HOME/.bash_env_secret"
-
-  # Scripts
-  log_info "Installing scripts..."
-  create_symlink "$DOTFILES_DIR/scripts" "$HOME/.scripts"
-
-  # Git files
-  log_info "Installing Git configuration..."
-  install_optional_config "$DOTFILES_DIR/git/gitconfig.local.gitconfig" "$HOME/.gitconfig"
-  install_optional_config "$DOTFILES_DIR/git/gitconfig.personal.local.gitconfig" "$HOME/.gitconfig.personal"
-  install_optional_config "$DOTFILES_DIR/git/gitconfig.work.local.gitconfig" "$HOME/.gitconfig.work"
-
-  # Vim
-  log_info "Installing Vim configuration..."
-  create_symlink "$DOTFILES_DIR/vim/vimrc" "$HOME/.vimrc"
-
-  # Tmux
-  log_info "Installing Tmux configuration..."
-  create_symlink "$DOTFILES_DIR/tmux/tmux.conf" "$HOME/.tmux.conf"
-
-  # Homebrew
-  log_info "Installing Homebrew configuration..."
-  create_symlink "$DOTFILES_DIR/homebrew/Brewfile" "$HOME/.Brewfile"
-
-  # .config directory contents
-  log_info "Installing .config applications..."
-  create_symlink "$DOTFILES_DIR/alacritty" "$HOME/.config/alacritty"
-  create_symlink "$DOTFILES_DIR/rectangle" "$HOME/.config/rectangle"
-  create_symlink "$DOTFILES_DIR/ruff" "$HOME/.config/ruff"
-  create_symlink "$DOTFILES_DIR/starship/starship.toml" "$HOME/.config/starship.toml"
-
-  # Deck (Kong)
-  log_info "Installing Deck configuration..."
-  install_optional_config "$DOTFILES_DIR/deck/deck.local.yaml" "$HOME/.deck.yaml"
-
-  # GnuPG
-  log_info "Installing GnuPG configuration..."
+  # Ensure secure directories exist before linking into them
   ensure_secure_directory "$HOME/.gnupg"
-  create_symlink "$DOTFILES_DIR/gnupg/gpg-agent.conf" "$HOME/.gnupg/gpg-agent.conf"
-
-  # SSH config
-  log_info "Installing SSH configuration..."
   ensure_secure_directory "$HOME/.ssh"
-  install_optional_config "$DOTFILES_DIR/ssh/config.local" "$HOME/.ssh/config"
+
+  for entry in "${SYMLINK_MAP[@]}"; do
+    local type="${entry%%|*}"
+    local rest="${entry#*|}"
+    local rel_source="${rest%%|*}"
+    local target="${rest##*|}"
+    local source="$DOTFILES_DIR/$rel_source"
+
+    if [[ "$type" == "optional" ]]; then
+      if [[ -f "$source" ]]; then
+        create_symlink "$source" "$target" || true
+      else
+        log_warning "$(basename "$source") not found — copy the .example and customize it."
+      fi
+    else
+      create_symlink "$source" "$target" || true
+    fi
+  done
+
+  # Ensure SSH config has correct permissions after linking
   ensure_secure_file "$HOME/.ssh/config"
 
-  # Print summary
   echo ""
   if [[ "$DRY_RUN" == true ]]; then
     echo -e "${YELLOW}=== DRY RUN COMPLETE ===${NC}"
@@ -433,7 +363,6 @@ install() {
     fi
 
     echo ""
-
     echo -e "${BLUE}=== INSTALLATION SUMMARY ===${NC}"
     echo -e "${GREEN}Created:${NC}  $LINKS_CREATED symlinks"
     echo -e "${YELLOW}Skipped:${NC}  $LINKS_SKIPPED files"
@@ -476,6 +405,7 @@ parse_args() {
 # Main entry point
 main() {
   parse_args "$@"
+  echo ""
 
   if [[ "$UNINSTALL" == true ]]; then
     uninstall
