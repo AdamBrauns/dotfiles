@@ -61,6 +61,9 @@ style = 'bold green'
 untracked = "🛤️ ×${count} "
 up_to_date = '✅'
 
+[nodejs]
+disabled = true
+
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
 flamingo = "#f2cdcd"
