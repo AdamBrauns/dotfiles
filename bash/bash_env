@@ -14,7 +14,7 @@ export SHELL
 export EDITOR=vim
 
 # Path Configuration
-export PATH=$PATH:$HOME/.local/bin:$HOME/bin:/usr/local/bin
+export PATH=$HOME/.local/bin:$HOME/bin:$PATH
 
 # History Configuration
 export HISTSIZE=1000

@@ -38,6 +38,7 @@ else
 fi
 
 # Change Directory
+alias cddot='cd ${DIR_GIT_DOT}'
 alias cdgit='cd ${DIR_GIT}'
 alias cdmono='cd ${DIR_GIT_MONO}'
 alias cdpers='cd ${DIR_GIT_PERSONAL}'
