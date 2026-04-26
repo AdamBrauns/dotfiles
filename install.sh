@@ -59,26 +59,27 @@ readonly FILE_PERMISSIONS=600
 #   type "required" — always link; error if source is missing
 #   type "optional" — link only if source exists (e.g. local/secret files)
 SYMLINK_MAP=(
-  "required|bash/bashrc|$HOME/.bashrc"
-  "required|bash/bash_profile|$HOME/.bash_profile"
+  "required|alacritty|$HOME/.config/alacritty"
   "required|bash/bash_aliases|$HOME/.bash_aliases"
   "required|bash/bash_env|$HOME/.bash_env"
-  "required|bash/shellcheckrc|$HOME/.shellcheckrc"
   "optional|bash/bash_env_secret.local|$HOME/.bash_env_secret"
-  "required|scripts|$HOME/.scripts"
+  "required|bash/bash_profile|$HOME/.bash_profile"
+  "required|bash/bashrc|$HOME/.bashrc"
+  "required|bash/shellcheckrc|$HOME/.shellcheckrc"
+  "required|claude/CLAUDE.md|$HOME/.claude/CLAUDE.md"
+  "optional|deck/deck.local.yaml|$HOME/.deck.yaml"
   "optional|git/gitconfig.local.gitconfig|$HOME/.gitconfig"
   "optional|git/gitconfig.personal.local.gitconfig|$HOME/.gitconfig.personal"
   "optional|git/gitconfig.work.local.gitconfig|$HOME/.gitconfig.work"
-  "required|vim/vimrc|$HOME/.vimrc"
-  "required|tmux/tmux.conf|$HOME/.tmux.conf"
+  "required|gnupg/gpg-agent.conf|$HOME/.gnupg/gpg-agent.conf"
   "required|homebrew/Brewfile|$HOME/.Brewfile"
-  "required|alacritty|$HOME/.config/alacritty"
   "required|rectangle|$HOME/.config/rectangle"
   "required|ruff|$HOME/.config/ruff"
-  "required|starship/starship.toml|$HOME/.config/starship.toml"
-  "optional|deck/deck.local.yaml|$HOME/.deck.yaml"
-  "required|gnupg/gpg-agent.conf|$HOME/.gnupg/gpg-agent.conf"
+  "required|scripts|$HOME/.scripts"
   "optional|ssh/config.local|$HOME/.ssh/config"
+  "required|starship/starship.toml|$HOME/.config/starship.toml"
+  "required|tmux/tmux.conf|$HOME/.tmux.conf"
+  "required|vim/vimrc|$HOME/.vimrc"
 )
 
 # Show usage information
