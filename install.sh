@@ -68,6 +68,7 @@ SYMLINK_MAP=(
   "required|bash/shellcheckrc|$HOME/.shellcheckrc"
   "required|claude/CLAUDE.md|$HOME/.claude/CLAUDE.md"
   "required|claude/settings.json|$HOME/.claude/settings.json"
+  "required|claude/commands|$HOME/.claude/commands"
   "required|claude/hooks|$HOME/.claude/hooks"
   "optional|deck/deck.local.yaml|$HOME/.deck.yaml"
   "optional|git/gitconfig.local.gitconfig|$HOME/.gitconfig"
