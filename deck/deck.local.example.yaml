@@ -1,9 +1,9 @@
 ---
-#----------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # File: .deck.yaml
 # Info: Example configuration file for Deck
 # Author: Adam Brauns (@AdamBrauns)
-#----------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 konnect-control-plane-name: Example Control Plane
 konnect-control-plane-url: https://control-plane.example.com

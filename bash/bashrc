@@ -1,9 +1,9 @@
-#----------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # File: .bashrc
 # Info: bashrc for non-login interactive shells
 # Author: Adam Brauns (@AdamBrauns)
 # shellcheck shell=bash
-#----------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # Set brew shell environment if homebrew is installed
 if [[ -x /opt/homebrew/bin/brew ]]; then

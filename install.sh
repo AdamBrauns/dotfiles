@@ -21,11 +21,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-#----------------------------------------------------------------------
-# Dotfiles Installation Script
+# ------------------------------------------------------------------------------
+# File: install.sh
+# Info: Symlinks dotfiles from this repo to $HOME
 # Author: Adam Brauns (@AdamBrauns)
-# Description: Symlinks dotfiles from this repo to $HOME
-#----------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 set -euo pipefail
 

@@ -1,8 +1,8 @@
-#----------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # File: Makefile
 # Info: Makefile for managing dotfiles installation and cleanup
 # Author: Adam Brauns (@AdamBrauns)
-#----------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 .PHONY: help install uninstall dry-install dry-uninstall check clean verbose lint
 

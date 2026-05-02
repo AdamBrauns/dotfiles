@@ -1,3 +1,5 @@
+<!-- Copyright (c) 2026 Adam Brauns (@AdamBrauns) -->
+
 # Dotfiles
 
 Personal dotfiles configuration for macOS/Linux development environments.
@@ -6,25 +8,27 @@ Personal dotfiles configuration for macOS/Linux development environments.
 
 ```
 dotfiles/
-├── alacritty/         # Terminal emulator config + themes
-├── bash/              # Bash shell configuration
-├── deck/              # Kong Deck configuration
-├── firefox/           # Firefox browser configuration
-├── git/               # Git configuration (with .example templates)
-├── gnupg/             # GnuPG configuration
-├── homebrew/          # Brewfile for package management
-├── rectangle/         # Rectangle window management config
-├── ruff/              # Ruff Python linter configuration
-├── scripts/           # Utility scripts
-├── ssh/               # SSH configuration templates
-├── starship/          # Starship cross-shell prompt config
-├── tmux/              # Tmux terminal multiplexer configuration
-├── vim/               # Vim configuration
-├── vscode/            # VS Code settings
-├── .gitignore         # Git ignore rules
-├── install.sh         # Installation script
-├── LICENSE            # MIT License
-├── Makefile           # Make targets for easy management
+├── alacritty/              # Terminal emulator config + themes
+├── bash/                   # Bash shell configuration (incl. shellcheckrc)
+├── claude/                 # Claude Code config, commands, and hooks
+├── deck/                   # Kong Deck configuration
+├── firefox/                # Firefox browser configuration
+├── git/                    # Git configuration (with .example templates)
+├── gnupg/                  # GnuPG configuration
+├── homebrew/               # Brewfile for package management
+├── rectangle/              # Rectangle window management config
+├── ruff/                   # Ruff Python linter configuration
+├── scripts/                # Utility scripts
+├── ssh/                    # SSH configuration templates
+├── starship/               # Starship cross-shell prompt config
+├── tmux/                   # Tmux terminal multiplexer configuration
+├── vim/                    # Vim configuration
+├── vscode/                 # VS Code settings
+├── .gitignore              # Git ignore rules
+├── .pre-commit-config.yaml # Pre-commit hooks (gitleaks)
+├── install.sh              # Installation script
+├── LICENSE                 # MIT License
+├── Makefile                # Make targets for easy management
 └── README.md
 ```
 
@@ -75,6 +79,7 @@ make install
    ```bash
    cp bash/bash_env_secret.local.example bash/bash_env_secret.local
    # Edit bash/bash_env_secret.local with your environment-specific settings
+   # Linked to ~/.bash_env_secret on install
    ```
 
 4. **Deck configuration** (optional): Copy and customize Kong Deck config:
@@ -85,7 +90,13 @@ make install
 
 5. **SSH keys**: Add your SSH keys to `~/.ssh/` (they won't be tracked)
 
-6. **Source your shell**:
+6. **Pre-commit hooks** (optional): Install [gitleaks](https://github.com/gitleaks/gitleaks) and enable hooks:
+   ```bash
+   brew install gitleaks pre-commit
+   pre-commit install
+   ```
+
+7. **Source your shell**:
    ```bash
    source ~/.bashrc
    # or restart your terminal
@@ -142,15 +153,24 @@ ln -s ~/dotfiles/bash/bashrc ~/.bashrc
 ln -s ~/dotfiles/bash/bash_profile ~/.bash_profile
 ln -s ~/dotfiles/bash/bash_aliases ~/.bash_aliases
 ln -s ~/dotfiles/bash/bash_env ~/.bash_env
+ln -s ~/dotfiles/bash/shellcheckrc ~/.shellcheckrc
 
-# Link git config
-ln -s ~/dotfiles/git/gitconfig ~/.gitconfig
+# Link git config (after copying the .example templates)
+ln -s ~/dotfiles/git/gitconfig.local.gitconfig ~/.gitconfig
+ln -s ~/dotfiles/git/gitconfig.personal.local.gitconfig ~/.gitconfig.personal
+ln -s ~/dotfiles/git/gitconfig.work.local.gitconfig ~/.gitconfig.work
 
 # Link vim config
 ln -s ~/dotfiles/vim/vimrc ~/.vimrc
 
 # Link tmux config
 ln -s ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
+
+# Link Claude Code config
+ln -s ~/dotfiles/claude/CLAUDE.md ~/.claude/CLAUDE.md
+ln -s ~/dotfiles/claude/settings.json ~/.claude/settings.json
+ln -s ~/dotfiles/claude/commands ~/.claude/commands
+ln -s ~/dotfiles/claude/hooks ~/.claude/hooks
 
 # Link .config directory apps
 ln -s ~/dotfiles/alacritty ~/.config/alacritty
