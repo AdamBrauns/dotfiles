@@ -9,6 +9,7 @@ Personal dotfiles configuration for macOS/Linux development environments.
 ```
 dotfiles/
 ├── alacritty/              # Terminal emulator config + themes
+├── ansible/                # Ansible-lint configuration
 ├── bash/                   # Bash shell configuration (incl. shellcheckrc)
 ├── claude/                 # Claude Code config, commands, and hooks
 ├── deck/                   # Kong Deck configuration
@@ -18,12 +19,12 @@ dotfiles/
 ├── homebrew/               # Brewfile for package management
 ├── rectangle/              # Rectangle window management config
 ├── ruff/                   # Ruff Python linter configuration
-├── scripts/                # Utility scripts
+├── scripts/                # Utility scripts (linked to ~/.scripts)
 ├── ssh/                    # SSH configuration templates
 ├── starship/               # Starship cross-shell prompt config
 ├── tmux/                   # Tmux terminal multiplexer configuration
 ├── vim/                    # Vim configuration
-├── vscode/                 # VS Code settings
+├── vscode/                 # VS Code settings (reference only, not symlinked)
 ├── .gitignore              # Git ignore rules
 ├── .pre-commit-config.yaml # Pre-commit hooks (gitleaks)
 ├── install.sh              # Installation script
@@ -42,7 +43,7 @@ git clone https://github.com/AdamBrauns/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 
 # Preview what will be installed (recommended first step)
-make dry-run
+make dry-install
 
 # Install dotfiles
 make install
@@ -107,13 +108,15 @@ make install
 The included Makefile provides convenient shortcuts:
 
 ```bash
-make              # Show available commands
-make install      # Install dotfiles interactively
-make verbose      # Install with detailed output
-make uninstall    # Remove all dotfiles symlinks
-make dry-run      # Preview installation without changes
-make check        # Verify dependencies are available
-make clean        # Remove backup files
+make                # Show available commands
+make install        # Install dotfiles interactively
+make verbose        # Install with detailed output
+make uninstall      # Remove all dotfiles symlinks
+make dry-install    # Preview installation changes (pass VERBOSE=1 for detail)
+make dry-uninstall  # Preview uninstallation changes (pass VERBOSE=1 for detail)
+make check          # Verify dependencies are available
+make lint           # Run shellcheck on install.sh
+make clean          # Remove backup files
 ```
 
 ### Install Script Options
@@ -154,6 +157,7 @@ ln -s ~/dotfiles/bash/bash_profile ~/.bash_profile
 ln -s ~/dotfiles/bash/bash_aliases ~/.bash_aliases
 ln -s ~/dotfiles/bash/bash_env ~/.bash_env
 ln -s ~/dotfiles/bash/shellcheckrc ~/.shellcheckrc
+ln -s ~/dotfiles/bash/bash_env_secret.local ~/.bash_env_secret  # optional
 
 # Link git config (after copying the .example templates)
 ln -s ~/dotfiles/git/gitconfig.local.gitconfig ~/.gitconfig
@@ -172,13 +176,29 @@ ln -s ~/dotfiles/claude/settings.json ~/.claude/settings.json
 ln -s ~/dotfiles/claude/commands ~/.claude/commands
 ln -s ~/dotfiles/claude/hooks ~/.claude/hooks
 
+# Link ansible-lint config
+ln -s ~/dotfiles/ansible/ansible-lint ~/.ansible-lint
+
+# Link GnuPG agent config
+ln -s ~/dotfiles/gnupg/gpg-agent.conf ~/.gnupg/gpg-agent.conf
+
+# Link Homebrew bundle
+ln -s ~/dotfiles/homebrew/Brewfile ~/.Brewfile
+
+# Link utility scripts
+ln -s ~/dotfiles/scripts ~/.scripts
+
+# Link SSH config (after copying the .example template)
+ln -s ~/dotfiles/ssh/config.local ~/.ssh/config  # optional
+
+# Link Kong Deck config (after copying the .example template)
+ln -s ~/dotfiles/deck/deck.local.yaml ~/.deck.yaml  # optional
+
 # Link .config directory apps
 ln -s ~/dotfiles/alacritty ~/.config/alacritty
 ln -s ~/dotfiles/rectangle ~/.config/rectangle
 ln -s ~/dotfiles/ruff ~/.config/ruff
 ln -s ~/dotfiles/starship/starship.toml ~/.config/starship.toml
-
-# And so on...
 ```
 
 ## 🔒 Security Notes

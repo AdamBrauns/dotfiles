@@ -60,6 +60,7 @@ readonly FILE_PERMISSIONS=600
 #   type "optional" — link only if source exists (e.g. local/secret files)
 SYMLINK_MAP=(
   "required|alacritty|$HOME/.config/alacritty"
+  "required|ansible/ansible-lint|$HOME/.ansible-lint"
   "required|bash/bash_aliases|$HOME/.bash_aliases"
   "required|bash/bash_env|$HOME/.bash_env"
   "optional|bash/bash_env_secret.local|$HOME/.bash_env_secret"

@@ -1,29 +1,52 @@
 {
+    "ansible.lightspeed.enabled": false,
+    "ansible.lightspeed.suggestions.enabled": false,
+    "ansible.validation.lint.arguments": "-c ~/.ansible-lint",
+    "breadcrumbs.enabled": false,
+    "chat.viewSessions.orientation": "stacked",
     "cSpell.userWords": [
         "Brauns",
+        "excalidraw",
         "gravemind",
         "Intune",
         "shellcheck"
     ],
+    "editor.defaultFormatter": "redhat.ansible",
+    "editor.formatOnSave": true,
     "excalidraw.theme": "dark",
+    "files.associations": {
+        "**/defaults/*.yaml": "ansible",
+        "**/defaults/*.yml": "ansible",
+        "**/group_vars/*.yaml": "ansible",
+        "**/group_vars/*.yml": "ansible",
+        "**/handlers/*.yaml": "ansible",
+        "**/handlers/*.yml": "ansible",
+        "**/hostvars/*.yaml": "ansible",
+        "**/hostvars/*.yml": "ansible",
+        "**/meta/*.yaml": "ansible",
+        "**/meta/*.yml": "ansible",
+        "**/playbooks/*.yaml": "ansible",
+        "**/playbooks/*.yml": "ansible",
+        "**/tasks/*.yaml": "ansible",
+        "**/tasks/*.yml": "ansible",
+        "**/vars/*.yaml": "ansible",
+        "**/vars/*.yml": "ansible"
+    },
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
-    "github.copilot.nextEditSuggestions.enabled": true,
-    "workbench.settings.applyToAllProfiles": [
-        "editor.fontFamily",
-        "ansible.python.interpreterPath"
-    ],
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "git.postCommitCommand": "sync",
+    "git.replaceTagsWhenPull": true,
+    "notebook.lineNumbers": "on",
+    "redhat.telemetry.enabled": false,
+    "terminal.integrated.env.linux": {
+        "PATH": "/home/user/.local/bin:${env:PATH}"
+    },
+    "workbench.editor.empty.hint": "hidden",
     "yaml.customTags": [
         "!secret scalar"
     ],
-    "[dockercompose]": {
-        "editor.insertSpaces": true,
-        "editor.tabSize": 2,
-        "editor.autoIndent": "advanced",
-        "editor.defaultFormatter": "redhat.vscode-yaml"
-    },
-    "[github-actions-workflow]": {
-        "editor.defaultFormatter": "redhat.vscode-yaml"
-    }
+    "yaml.format.printWidth": 160
 }
