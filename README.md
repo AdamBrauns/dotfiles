@@ -23,6 +23,7 @@ dotfiles/
 ├── ssh/                    # SSH configuration templates
 ├── starship/               # Starship cross-shell prompt config
 ├── tmux/                   # Tmux terminal multiplexer configuration
+├── uv/                     # uv Python tools manifest (tools.txt)
 ├── vim/                    # Vim configuration
 ├── vscode/                 # VS Code settings (reference only, not symlinked)
 ├── .gitignore              # Git ignore rules
@@ -199,6 +200,7 @@ ln -s ~/dotfiles/alacritty ~/.config/alacritty
 ln -s ~/dotfiles/rectangle ~/.config/rectangle
 ln -s ~/dotfiles/ruff ~/.config/ruff
 ln -s ~/dotfiles/starship/starship.toml ~/.config/starship.toml
+ln -s ~/dotfiles/uv/tools.txt ~/.config/uv/tools.txt
 ```
 
 ## 🔒 Security Notes

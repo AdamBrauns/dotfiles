@@ -1,0 +1,5 @@
+httpie
+magic-wormhole
+pre-commit
+ruff
+speedtest-cli

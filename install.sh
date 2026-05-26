@@ -83,6 +83,7 @@ SYMLINK_MAP=(
   "optional|ssh/config.local|$HOME/.ssh/config"
   "required|starship/starship.toml|$HOME/.config/starship.toml"
   "required|tmux/tmux.conf|$HOME/.tmux.conf"
+  "required|uv/tools.txt|$HOME/.config/uv/tools.txt"
   "required|vim/vimrc|$HOME/.vimrc"
 )
 

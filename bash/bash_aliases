@@ -102,6 +102,15 @@ if command -v kubectl &> /dev/null; then
   alias k='kubectl'
 fi
 
+# UV (Python tools)
+if command -v uv &> /dev/null; then
+  alias uvup='uv tool upgrade --all'
+  alias uvinstall='grep -vE "^\s*(#|$)" ~/.config/uv/tools.txt | xargs -I{} uv tool install {}'
+  alias uvall='uvinstall && uvup'
+  alias uvdump='uv tool list 2>/dev/null | grep -v "^-" | awk "{print \$1}" | sort > ~/.config/uv/tools.txt'
+  alias uvclean='uv cache clean'
+fi
+
 # SSH
 alias sshpi='ssh ${HOST_PI}'
 alias sshprox='ssh ${HOST_PROX}'
