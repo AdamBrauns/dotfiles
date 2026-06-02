@@ -10,12 +10,24 @@ live_config_reload = true
 
 [cursor]
 style = { shape = "Block", blinking = "Off" }
+unfocused_hollow = true
 
 [env]
 TERM = "xterm-256color"
 
 [font]
 size = 20
+
+# Require holding Cmd to click links open, so a stray focus-click does nothing.
+# (Single-quoted TOML literal string so regex backslashes need no escaping.)
+[[hints.enabled]]
+regex = '(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\s<>"]+'
+hyperlinks = true
+command = "open"
+post_processing = true
+persist = false
+mouse = { enabled = true, mods = "Command" }
+binding = { key = "U", mods = "Control|Shift" }
 
 [[keyboard.bindings]]
 key = "Return"
@@ -40,6 +52,8 @@ shell.program = "/opt/homebrew/bin/bash"
 decorations = "Full"
 decorations_theme_variant = "Dark"
 dimensions = { columns = 100, lines = 35 }
+# Treat both Option keys as Alt/Meta so readline word-motions (Alt+f/b/d) work.
+option_as_alt = "Both"
 opacity = 0.9
 padding = { x = 20, y = 20 }
 title = ""
