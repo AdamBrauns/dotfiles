@@ -51,8 +51,7 @@ alias ansencrypt='ansible-vault encrypt'
 # Brew
 if command -v brew &> /dev/null; then
   alias brewup='brew update && brew upgrade'
-  alias brewcu='brew cu -a'
-  alias brewall='brewup && brewcu'
+  alias brewall='brew update && brew upgrade --greedy'
   alias brewdump='brew bundle dump -f'
   alias brewclean='brew autoremove && brew cleanup'
 fi

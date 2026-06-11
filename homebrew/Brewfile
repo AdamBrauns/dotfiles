@@ -1,72 +1,134 @@
 tap "anthropics/tap"
-tap "buo/cask-upgrade"
 tap "homebrew/bundle"
 tap "kong/deck"
+tap "kong/kongctl"
 tap "supabase/tap"
 tap "typewhisper/tap"
+# Official Amazon AWS command-line interface
 brew "awscli"
+# Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
+# Programmable completion for Bash 4.2+
 brew "bash-completion@2"
+# Console Matrix
 brew "cmatrix"
+# Container runtimes on MacOS (and Linux) with minimal setup
 brew "colima"
+# Create and run Linux containers using lightweight virtual machines
 brew "container"
+# Apjanke's fork of the classic cowsay project
 brew "cowsay"
+# Pack, ship and run any application as a lightweight container
 brew "docker"
+# Isolated development environments using Docker
 brew "docker-compose"
+# Like neofetch, but much faster because written mostly in C
 brew "fastfetch"
+# Infamous electronic fortune-cookie generator
 brew "fortune"
+# Command-line fuzzy finder written in Go
 brew "fzf"
+# Audit git repos for secrets
 brew "gitleaks"
+# GNU Privacy Guard (OpenPGP)
 brew "gnupg"
+# Kubernetes package manager
 brew "helm"
+# Calculate various network masks, etc. from a given IP address
 brew "ipcalc"
+# Kubernetes command-line interface
 brew "kubernetes-cli"
+# Rainbows and unicorns in your console!
 brew "lolcat"
+# Open-source, cross-platform JavaScript runtime environment
 brew "node"
+# Visual testing tool for MCP servers
 brew "mcp-inspector"
+# OpenShift command-line interface tools
 brew "openshift-cli"
+# Drop-in replacement for Terraform. Infrastructure as Code Tool
 brew "opentofu"
+# Swiss-army knife of markup format conversion
 brew "pandoc"
+# Fast, disk space efficient package manager
 brew "pnpm"
+# Perl-powered file rename script with many helpful built-ins
 brew "rename"
+# Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
+# Autoformat shell script source code
 brew "shfmt"
+# Cross-shell prompt for astronauts
 brew "starship"
+# Terminal multiplexer
 brew "tmux"
+# Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
+# Executes a program periodically, showing output fullscreen
 brew "watch"
+# Process YAML, JSON, XML, CSV and properties documents from the CLI
 brew "yq"
-brew "kong/deck/deck"
-brew "supabase/tap/supabase"
+# GPU-accelerated terminal emulator
 cask "alacritty"
-cask "anthropics/tap/ant"
+# CLI for the Claude Platform
+cask "anthropics/tap/ant", trusted: true
+# Desktop password and login vault
 cask "bitwarden"
+# Web browser focusing on privacy
 cask "brave-browser"
+# OpenAI's official ChatGPT desktop app
 cask "chatgpt"
+# Anthropic's official Claude AI desktop app
 cask "claude"
+# Terminal-based AI coding assistant
 cask "claude-code@latest"
+# OpenAI's coding agent that runs in your terminal
 cask "codex"
+# OpenAI's Codex desktop app for managing coding agents
 cask "codex-app"
+# Desktop client for Ente Auth
 cask "ente-auth"
+# Web browser
 cask "firefox"
+# Utility to hide menu bar items
 cask "hiddenbar"
+# Companion app for Home Assistant home automation software
 cask "home-assistant"
+# Convert your caps lock key or any of your modifier keys to the hyper key
 cask "hyperkey"
+# HTTP and GraphQL Client
 cask "insomnia"
+# Menu bar calendar
 cask "itsycal"
+# Developer CLI for Kong
+cask "kong/kongctl/kongctl", trusted: true
+# Software for Logitech devices
 cask "logi-options+"
+# Free and open-source RSS reader
 cask "netnewswire"
+# Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
+# Tool that provides consistent, highly configurable symbols for apps
 cask "sf-symbols"
+# Screenshot measurement and annotation tool
 cask "shottr"
+# Instant messaging application focusing on security
 cask "signal"
+# Music streaming service
 cask "spotify"
+# System monitor for the menu bar
 cask "stats"
+# To-do & task list manager
 cask "ticktick"
+# Speech-to-text and AI text processing
 cask "typewhisper/tap/typewhisper"
+# Virtual machines UI using QEMU
 cask "utm"
+# Open-source code editor
 cask "visual-studio-code"
+# Connect to Windows
 cask "windows-app"
 vscode "anthropic.claude-code"
 vscode "hashicorp.terraform"
