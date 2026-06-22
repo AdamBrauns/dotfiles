@@ -1,5 +1,9 @@
 <!-- Copyright (c) 2026 Adam Brauns (@AdamBrauns) -->
 
+<p align="center">
+  <img src="assets/banner.svg" alt="adam's dotfiles — animated banner" width="100%">
+</p>
+
 # Dotfiles
 
 Personal dotfiles configuration for macOS/Linux development environments.
@@ -65,29 +69,29 @@ make install
 
 1. **Git configuration**: Copy and customize environment-specific configs:
    ```bash
-   cp git/gitconfig.local.example.gitconfig git/gitconfig.local.gitconfig
-   cp git/gitconfig.personal.local.example.gitconfig git/gitconfig.personal.local.gitconfig
-   cp git/gitconfig.work.local.example.gitconfig git/gitconfig.work.local.gitconfig
+   cp git/gitconfig.secret.example.gitconfig git/gitconfig.secret.gitconfig
+   cp git/gitconfig.personal.secret.example.gitconfig git/gitconfig.personal.secret.gitconfig
+   cp git/gitconfig.work.secret.example.gitconfig git/gitconfig.work.secret.gitconfig
    # Edit these files with your personal information
    ```
 
 2. **SSH configuration**: Copy and customize your SSH config:
    ```bash
-   cp ssh/config.local.example ssh/config.local
-   # Edit ssh/config.local with your identity files and usernames
+   cp ssh/config.secret.example ssh/config.secret
+   # Edit ssh/config.secret with your identity files and usernames
    ```
 
 3. **Bash secrets** (optional): Copy and customize environment variables:
    ```bash
-   cp bash/bash_env_secret.local.example bash/bash_env_secret.local
-   # Edit bash/bash_env_secret.local with your environment-specific settings
+   cp bash/bash_env_secret.secret.example bash/bash_env_secret.secret
+   # Edit bash/bash_env_secret.secret with your environment-specific settings
    # Linked to ~/.bash_env_secret on install
    ```
 
 4. **Deck configuration** (optional): Copy and customize Kong Deck config:
    ```bash
-   cp deck/deck.local.example.yaml deck/deck.local.yaml
-   # Edit deck/deck.local.yaml with your Kong settings
+   cp deck/deck.secret.example.yaml deck/deck.secret.yaml
+   # Edit deck/deck.secret.yaml with your Kong settings
    ```
 
 5. **SSH keys**: Add your SSH keys to `~/.ssh/` (they won't be tracked)
@@ -158,12 +162,12 @@ ln -s ~/dotfiles/bash/bash_profile ~/.bash_profile
 ln -s ~/dotfiles/bash/bash_aliases ~/.bash_aliases
 ln -s ~/dotfiles/bash/bash_env ~/.bash_env
 ln -s ~/dotfiles/bash/shellcheckrc ~/.shellcheckrc
-ln -s ~/dotfiles/bash/bash_env_secret.local ~/.bash_env_secret  # optional
+ln -s ~/dotfiles/bash/bash_env_secret.secret ~/.bash_env_secret  # optional
 
 # Link git config (after copying the .example templates)
-ln -s ~/dotfiles/git/gitconfig.local.gitconfig ~/.gitconfig
-ln -s ~/dotfiles/git/gitconfig.personal.local.gitconfig ~/.gitconfig.personal
-ln -s ~/dotfiles/git/gitconfig.work.local.gitconfig ~/.gitconfig.work
+ln -s ~/dotfiles/git/gitconfig.secret.gitconfig ~/.gitconfig
+ln -s ~/dotfiles/git/gitconfig.personal.secret.gitconfig ~/.gitconfig.personal
+ln -s ~/dotfiles/git/gitconfig.work.secret.gitconfig ~/.gitconfig.work
 
 # Link vim config
 ln -s ~/dotfiles/vim/vimrc ~/.vimrc
@@ -190,10 +194,10 @@ ln -s ~/dotfiles/homebrew/Brewfile ~/.Brewfile
 ln -s ~/dotfiles/scripts ~/.scripts
 
 # Link SSH config (after copying the .example template)
-ln -s ~/dotfiles/ssh/config.local ~/.ssh/config  # optional
+ln -s ~/dotfiles/ssh/config.secret ~/.ssh/config  # optional
 
 # Link Kong Deck config (after copying the .example template)
-ln -s ~/dotfiles/deck/deck.local.yaml ~/.deck.yaml  # optional
+ln -s ~/dotfiles/deck/deck.secret.yaml ~/.deck.yaml  # optional
 
 # Link .config directory apps
 ln -s ~/dotfiles/alacritty ~/.config/alacritty

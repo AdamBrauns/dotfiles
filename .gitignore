@@ -1,10 +1,10 @@
-# Environment-specific configs (use *.local.example.* files as templates)
-# Ignore all .local. files (with or without extensions)
-*.local.*
-*.local
-# But keep .example files
-!*.local.example.*
-!*.local.example
+# Environment-specific secrets (use *.secret.example.* files as templates)
+# Ignore all .secret files (with or without extensions)
+*.secret.*
+*.secret
+# But keep .example templates
+!*.secret.example.*
+!*.secret.example
 
 # SSH keys and sensitive files (NEVER commit these!)
 ssh/id_*

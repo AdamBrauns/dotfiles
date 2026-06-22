@@ -63,7 +63,7 @@ SYMLINK_MAP=(
   "required|ansible/ansible-lint|$HOME/.ansible-lint"
   "required|bash/bash_aliases|$HOME/.bash_aliases"
   "required|bash/bash_env|$HOME/.bash_env"
-  "optional|bash/bash_env_secret.local|$HOME/.bash_env_secret"
+  "optional|bash/bash_env_secret.secret|$HOME/.bash_env_secret"
   "required|bash/bash_profile|$HOME/.bash_profile"
   "required|bash/bashrc|$HOME/.bashrc"
   "required|bash/shellcheckrc|$HOME/.shellcheckrc"
@@ -72,16 +72,16 @@ SYMLINK_MAP=(
   "required|claude/commands|$HOME/.claude/commands"
   "required|claude/skills|$HOME/.claude/skills"
   "required|claude/hooks|$HOME/.claude/hooks"
-  "optional|deck/deck.local.yaml|$HOME/.deck.yaml"
-  "optional|git/gitconfig.local.gitconfig|$HOME/.gitconfig"
-  "optional|git/gitconfig.personal.local.gitconfig|$HOME/.gitconfig.personal"
-  "optional|git/gitconfig.work.local.gitconfig|$HOME/.gitconfig.work"
+  "optional|deck/deck.secret.yaml|$HOME/.deck.yaml"
+  "optional|git/gitconfig.secret.gitconfig|$HOME/.gitconfig"
+  "optional|git/gitconfig.personal.secret.gitconfig|$HOME/.gitconfig.personal"
+  "optional|git/gitconfig.work.secret.gitconfig|$HOME/.gitconfig.work"
   "required|gnupg/gpg-agent.conf|$HOME/.gnupg/gpg-agent.conf"
   "required|homebrew/Brewfile|$HOME/.Brewfile"
   "required|rectangle|$HOME/.config/rectangle"
   "required|ruff|$HOME/.config/ruff"
   "required|scripts|$HOME/.scripts"
-  "optional|ssh/config.local|$HOME/.ssh/config"
+  "optional|ssh/config.secret|$HOME/.ssh/config"
   "required|starship/starship.toml|$HOME/.config/starship.toml"
   "required|tmux/tmux.conf|$HOME/.tmux.conf"
   "required|uv/tools.txt|$HOME/.config/uv/tools.txt"
@@ -412,7 +412,6 @@ parse_args() {
 # Main entry point
 main() {
   parse_args "$@"
-  echo ""
 
   if [[ "$UNINSTALL" == true ]]; then
     uninstall

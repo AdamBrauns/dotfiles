@@ -1,11 +1,13 @@
 tap "anthropics/tap"
 tap "homebrew/bundle"
-tap "kong/deck"
+tap "kong/deck", trusted: true
 tap "kong/kongctl"
-tap "supabase/tap"
-tap "typewhisper/tap"
+tap "supabase/tap", trusted: true
+tap "typewhisper/tap", trusted: true
 # Official Amazon AWS command-line interface
 brew "awscli"
+# Microsoft Azure CLI 2.0
+brew "azure-cli"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
 # Programmable completion for Bash 4.2+
@@ -70,6 +72,10 @@ brew "uv"
 brew "watch"
 # Process YAML, JSON, XML, CSV and properties documents from the CLI
 brew "yq"
+# Declarative configuration for Kong
+brew "kong/deck/deck"
+# Supabase CLI
+brew "supabase/tap/supabase"
 # GPU-accelerated terminal emulator
 cask "alacritty"
 # CLI for the Claude Platform
