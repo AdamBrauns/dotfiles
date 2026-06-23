@@ -5,25 +5,27 @@
 # shellcheck shell=bash
 # ------------------------------------------------------------------------------
 
-# Shell Configuration
+# Bash configuration
 export BASH_SILENCE_DEPRECATION_WARNING=1
-SHELL="$(brew --prefix)/bin/bash"
-export SHELL
 
-# Editor Configuration
+# Editor configuration
 export EDITOR=vim
 
-# Path Configuration
-export PATH=$HOME/.local/bin:$HOME/bin:$PATH
+# GPG configuration
+GPG_TTY=$(tty)
+export GPG_TTY
 
-# History Configuration
+# History configuration
 export HISTSIZE=1000
 export HISTFILESIZE=2000
 export HISTCONTROL=ignoreboth
 
-# GPG Configuration
-GPG_TTY=$(tty)
-export GPG_TTY
-
-# Homebrew Configuration
+# Homebrew configuration
 export HOMEBREW_NO_ANALYTICS=1
+
+# Path configuration
+export PATH=$HOME/.local/bin:$HOME/bin:$PATH
+
+# Shell configuration
+SHELL="$(brew --prefix)/bin/bash"
+export SHELL

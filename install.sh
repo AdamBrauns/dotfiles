@@ -64,6 +64,7 @@ SYMLINK_MAP=(
   "required|bash/bash_aliases|$HOME/.bash_aliases"
   "required|bash/bash_env|$HOME/.bash_env"
   "optional|bash/bash_env_secret.secret|$HOME/.bash_env_secret"
+  "required|bash/bash_functions|$HOME/.bash_functions"
   "required|bash/bash_profile|$HOME/.bash_profile"
   "required|bash/bashrc|$HOME/.bashrc"
   "required|bash/shellcheckrc|$HOME/.shellcheckrc"

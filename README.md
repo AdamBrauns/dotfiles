@@ -160,6 +160,7 @@ If you prefer manual installation:
 ln -s ~/dotfiles/bash/bashrc ~/.bashrc
 ln -s ~/dotfiles/bash/bash_profile ~/.bash_profile
 ln -s ~/dotfiles/bash/bash_aliases ~/.bash_aliases
+ln -s ~/dotfiles/bash/bash_functions ~/.bash_functions
 ln -s ~/dotfiles/bash/bash_env ~/.bash_env
 ln -s ~/dotfiles/bash/shellcheckrc ~/.shellcheckrc
 ln -s ~/dotfiles/bash/bash_env_secret.secret ~/.bash_env_secret  # optional

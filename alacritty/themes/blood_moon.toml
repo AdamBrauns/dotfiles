@@ -30,3 +30,45 @@ blue    = '#007FFF'
 magenta = '#FF1493'
 cyan    = '#00CCCC'
 white   = '#FFFAFA'
+
+# ------------------------------------------------------------------------------
+# Personal preference below
+# ------------------------------------------------------------------------------
+
+# Cursor — plain foreground block, never clashes with the glyph beneath it
+[colors.cursor]
+text   = '#10100E'
+cursor = '#C6C6C4'
+
+# Vi mode cursor — crimson, so switching modes is obvious
+[colors.vi_mode_cursor]
+text   = '#10100E'
+cursor = '#C40233'
+
+# Selection — cool desaturated slate, clearly lifted off the background
+[colors.selection]
+text       = '#E8E8E6'
+background = '#33313A'
+
+# Search — muted amber matches; the focused match keeps full crimson
+[colors.search.matches]
+foreground = '#10100E'
+background = '#D9A441'
+
+[colors.search.focused_match]
+foreground = '#FFFAFA'
+background = '#C40233'
+
+# Keyboard hints (Ctrl+Shift+U / Cmd+click)
+[colors.hints.start]
+foreground = '#10100E'
+background = '#D9A441'
+
+[colors.hints.end]
+foreground = '#C6C6C4'
+background = '#33313A'
+
+# Footer bar (search / vi mode)
+[colors.footer_bar]
+foreground = '#8A8A90'
+background = '#17171B'

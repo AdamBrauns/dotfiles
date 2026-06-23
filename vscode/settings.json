@@ -1,7 +1,7 @@
 {
     "ansible.lightspeed.enabled": false,
     "ansible.lightspeed.suggestions.enabled": false,
-    "ansible.validation.lint.arguments": "-c ~/.ansible-lint",
+    "ansible.validation.lint.arguments": "-c ${env:HOME}/.ansible-lint",
     "breadcrumbs.enabled": false,
     "chat.viewSessions.orientation": "stacked",
     "cSpell.userWords": [
@@ -11,8 +11,25 @@
         "Intune",
         "shellcheck"
     ],
-    "editor.defaultFormatter": "redhat.ansible",
+    "diffEditor.ignoreTrimWhitespace": false,
     "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "modifications",
+    "editor.renderWhitespace": "boundary",
+    "editor.rulers": [
+        {
+            "column": 80,
+            "color": "#808080"
+        },
+        {
+            "column": 120,
+            "color": "#d7a65f80"
+        },
+        {
+            "column": 160,
+            "color": "#ff555599"
+        }
+    ],
+    "editor.stickyScroll.enabled": true,
     "excalidraw.theme": "dark",
     "files.associations": {
         "**/defaults/*.yaml": "ansible",
@@ -30,7 +47,9 @@
         "**/tasks/*.yaml": "ansible",
         "**/tasks/*.yml": "ansible",
         "**/vars/*.yaml": "ansible",
-        "**/vars/*.yml": "ansible"
+        "**/vars/*.yml": "ansible",
+        "bash_*": "shellscript",
+        "bashrc": "shellscript"
     },
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
@@ -41,12 +60,29 @@
     "git.replaceTagsWhenPull": true,
     "notebook.lineNumbers": "on",
     "redhat.telemetry.enabled": false,
+    "telemetry.telemetryLevel": "off",
     "terminal.integrated.env.linux": {
-        "PATH": "/home/user/.local/bin:${env:PATH}"
+        "PATH": "${env:HOME}/.local/bin:${env:PATH}"
     },
+    "terminal.integrated.scrollback": 10000,
     "workbench.editor.empty.hint": "hidden",
     "yaml.customTags": [
         "!secret scalar"
     ],
-    "yaml.format.printWidth": 160
+    "yaml.format.printWidth": 160,
+    "[ansible]": {
+        "editor.defaultFormatter": "redhat.ansible",
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": false
+    },
+    "[markdown]": {
+        "files.trimTrailingWhitespace": false
+    },
+    "[yaml]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml",
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": false
+    }
 }

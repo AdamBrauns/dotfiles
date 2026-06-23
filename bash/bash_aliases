@@ -7,11 +7,14 @@
 
 # General
 alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
 alias ll='ls -l'
 alias la='ll -a'
-alias grep='grep --color'
-alias erep='egrep --color=auto'
+alias grep='grep --color=auto'
+alias erep='grep -E --color=auto'
 alias now='date +"%T"'
+alias reload='source ~/.bash_profile'
 alias skurt='exit'
 alias tm='tmux'
 alias yeet='rm'
@@ -24,14 +27,14 @@ alias rndir='rename "s/[ _]/-/g; y/A-Z/a-z/" * -f'
 alias shfmt='shfmt -w -i 2 -ci -bn'
 
 # Cross-platform port listing
-if netstat -tulanp &>/dev/null 2>&1; then
+if netstat -tulanp &>/dev/null; then
   alias ports='netstat -tulanp'
 else
   alias ports='netstat -an | grep LISTEN'
 fi
 
 # Detect OS for ls colors
-if ls --color=auto &>/dev/null 2>&1; then
+if ls --color=auto &>/dev/null; then
   alias ls='ls --color=auto'
 else
   alias ls='ls -G'
@@ -52,13 +55,13 @@ alias ansencrypt='ansible-vault encrypt'
 if command -v brew &> /dev/null; then
   alias brewup='brew update && brew upgrade'
   alias brewall='brew update && brew upgrade --greedy'
-  alias brewdump='brew bundle dump -f'
+  alias brewdump='brew bundle dump -f --file="${DIR_GIT_DOT}/homebrew/Brewfile"'
   alias brewclean='brew autoremove && brew cleanup'
 fi
 
 # Claude
 if command -v claude &> /dev/null; then
-  alias cc='claude'
+  alias cl='claude'
 fi
 
 # Codex
@@ -103,6 +106,8 @@ fi
 # Kubernetes
 if command -v kubectl &> /dev/null; then
   alias k='kubectl'
+  source <(kubectl completion bash)
+  complete -o default -F __start_kubectl k
 fi
 
 # UV (Python tools)
@@ -117,67 +122,3 @@ fi
 # SSH
 alias sshpi='ssh ${HOST_PI}'
 alias sshprox='ssh ${HOST_PROX}'
-
-# Git
-# Interactive branch switcher with fzf (shows recent branches, preview diffs)
-alias gbs="git branch --sort=-committerdate --color=always \
-  | fzf --border --reverse --ansi \
-       --header \"Recent branches (↑ newest)\" \
-       --preview \"git diff --color=always {1} | head -500\" \
-       --preview-window right,70% \
-  | sed 's/.* //' \
-  | xargs git checkout"
-
-# Stage selected changed/untracked files (multi-select with TAB)
-alias ga="git ls-files -m -o --exclude-standard \
-  | fzf -m --preview 'git diff --color=always {}' \
-       --preview-window right,70% \
-       --header 'Stage files (multi-select with TAB)' \
-  | xargs git add"
-
-# Interactive interactive add --patch (great for partial staging)
-alias gap="git ls-files -m --exclude-standard \
-  | fzf -m --preview 'git diff --color=always {}' \
-       --preview-window right,70% \
-       --header 'Partial staging (multi-select with TAB)' \
-  | xargs -o git add -p"
-
-# Unstage selected staged files
-alias gus="git diff --name-only --cached \
-  | fzf -m --preview 'git diff --color=always --cached {}' \
-       --preview-window right,70% \
-       --header 'Unstage files (multi-select with TAB)' \
-  | xargs git restore --staged"
-
-# Review staged changes and commit
-alias gc="git diff --name-only --cached \
-  | fzf --preview 'git diff --color=always --cached {}' \
-       --preview-window right,70% \
-       --header 'Review staged changes (Enter to commit, Esc to cancel)' \
-  > /dev/null && git commit"
-
-# Interactive status viewer with file diffs
-# shellcheck disable=SC2142,SC2154
-alias gs="git status --short \
-  | fzf --ansi --preview \
-       'f=\$(echo {} | awk \"{print \\\$2}\"); \
-        git diff --color=always \$f 2>/dev/null || git diff --color=always --cached \$f 2>/dev/null || cat \$f' \
-       --preview-window right,70% \
-       --header 'Git status (view changes)' \
-  > /dev/null"
-
-# Discard changes in selected files (restore to last commit)
-alias gr="git ls-files -m \
-  | fzf -m --preview 'git diff --color=always {}' \
-       --preview-window right,70% \
-       --header 'Discard changes (multi-select with TAB)' \
-  | xargs git restore"
-
-# Browse commit history with diffs
-# shellcheck disable=SC2142
-alias gl="git log --oneline --color=always \
-  | fzf --ansi --preview \
-       'git show --color=always \$(echo {} | awk \"{print \\\$1}\")' \
-       --preview-window right,70% \
-       --header 'Commit history' \
-  > /dev/null"

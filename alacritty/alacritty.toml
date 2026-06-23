@@ -13,10 +13,11 @@ style = { shape = "Block", blinking = "Off" }
 unfocused_hollow = true
 
 [env]
-TERM = "xterm-256color"
+TERM = "alacritty"
 
 [font]
 size = 20
+normal = { family = "Menlo", style = "Regular" }
 
 # Require holding Cmd to click links open, so a stray focus-click does nothing.
 # (Single-quoted TOML literal string so regex backslashes need no escaping.)
@@ -40,7 +41,6 @@ bindings = [{ mouse = "Right", action = "Paste" }]
 
 [scrolling]
 history = 10000
-multiplier = 3
 
 [selection]
 save_to_clipboard = true
