@@ -12,6 +12,17 @@ elif [[ -x /usr/local/bin/brew ]]; then
   eval "$(/usr/local/bin/brew shellenv)"
 fi
 
+# Everything below is interactive-only
+case $- in
+  *i*) ;;
+  *) return ;;
+esac
+
+# Shell options
+shopt -s histappend   # append to history, don't overwrite
+shopt -s checkwinsize # update LINES/COLUMNS after each command
+shopt -s globstar     # ** matches files recursively
+
 # Initialize starship if available
 if command -v starship &> /dev/null; then
   eval "$(starship init bash)"
@@ -32,7 +43,12 @@ if [[ -f ~/.bash_env_secret ]]; then
   . ~/.bash_env_secret
 fi
 
-# Source aliases
+# Enable bash completion (load the framework before anything that registers completions)
+if [[ -s $HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh ]]; then
+  . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
+fi
+
+# Source aliases (kubectl completion here depends on the framework above)
 if [[ -f ~/.bash_aliases ]]; then
   . ~/.bash_aliases
 fi
@@ -42,9 +58,9 @@ if [[ -f ~/.bash_functions ]]; then
   . ~/.bash_functions
 fi
 
-# Enable bash completion
-if [[ -s $HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh ]]; then
-  . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
+# Initialize fzf key bindings and fuzzy completion
+if command -v fzf &> /dev/null; then
+  eval "$(fzf --bash)"
 fi
 
 # Source fzf-git if available

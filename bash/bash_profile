@@ -5,9 +5,9 @@
 # shellcheck shell=bash
 # ------------------------------------------------------------------------------
 
-# Source global definitions
-if [[ -f /etc/bash_profile ]]; then
-  . /etc/bash_profile
+# Bail out if not running under bash
+if [[ -z $BASH_VERSION ]]; then
+  return
 fi
 
 # Get the aliases and functions

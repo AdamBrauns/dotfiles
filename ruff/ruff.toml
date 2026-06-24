@@ -4,9 +4,16 @@
 # Author: Adam Brauns (@AdamBrauns)
 # ------------------------------------------------------------------------------
 
+[format]
+# Format code embedded in docstrings (default: false)
+docstring-code-format = true
+
 [lint]
 # In addition to the default rules, enable:
-#   1) flynt (FLY)
-#   2) isort (I)
-#   3) pyupgrade (UP)
-extend-select = ["FLY", "I", "UP"]
+#   1) flake8-bugbear (B)
+#   2) flake8-comprehensions (C4)
+#   3) flake8-simplify (SIM)
+#   4) flynt (FLY)
+#   5) isort (I)
+#   6) pyupgrade (UP)
+extend-select = ["B", "C4", "SIM", "FLY", "I", "UP"]

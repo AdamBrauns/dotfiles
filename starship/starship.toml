@@ -49,18 +49,19 @@ commit_hash_length = 8
 tag_symbol = '🏷  '
 
 [git_status]
-ahead = "🏎️💨×${count}"
-behind = "🐢×${count}"
+format = '([$all_status$ahead_behind]($style))'
+ahead = '🏎️💨×${count} '
+behind = '🐢×${count} '
 conflicted = '🖇️ '
-deleted = "🗑️ ×${count}"
-diverged = "🔱 🏎️💨×${ahead_count} 🐢×${behind_count}"
-modified = "📝×${count} "
-renamed = "📛×${count} "
-staged = "🗃️ ×${count} "
-stashed = "📦 "
+deleted = '🗑️ ×${count} '
+diverged = '🔱 🏎️💨×${ahead_count} 🐢×${behind_count} '
+modified = '📝×${count} '
+renamed = '📛×${count} '
+staged = '🗃️ ×${count} '
+stashed = '📦 '
 style = 'bold green'
-untracked = "🛤️ ×${count} "
-up_to_date = '✅'
+untracked = '🛤️ ×${count} '
+up_to_date = ''
 
 [nodejs]
 disabled = true
