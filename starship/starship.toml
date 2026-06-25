@@ -65,3 +65,6 @@ up_to_date = ''
 
 [nodejs]
 disabled = true
+
+[package]
+disabled = true
