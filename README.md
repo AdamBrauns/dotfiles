@@ -15,7 +15,7 @@ dotfiles/
 ├── alacritty/              # Terminal emulator config + themes
 ├── ansible/                # Ansible-lint configuration
 ├── bash/                   # Bash shell configuration (incl. shellcheckrc)
-├── claude/                 # Claude Code config, commands, and hooks
+├── claude/                 # Claude Code config (private submodule)
 ├── deck/                   # Kong Deck configuration
 ├── firefox/                # Firefox browser configuration
 ├── git/                    # Git configuration (with .example templates)
@@ -43,8 +43,8 @@ dotfiles/
 ### Quick Start
 
 ```bash
-# Clone the repository
-git clone https://github.com/AdamBrauns/dotfiles.git ~/dotfiles
+# Clone the repository (the claude/ submodule is private — others can skip it)
+git clone --recurse-submodules https://github.com/AdamBrauns/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 
 # Preview what will be installed (recommended first step)
@@ -176,7 +176,8 @@ ln -s ~/dotfiles/vim/vimrc ~/.vimrc
 # Link tmux config
 ln -s ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
 
-# Link Claude Code config
+# Link Claude Code config (private submodule — initialize it first; requires access)
+git submodule update --init claude
 ln -s ~/dotfiles/claude/CLAUDE.md ~/.claude/CLAUDE.md
 ln -s ~/dotfiles/claude/settings.json ~/.claude/settings.json
 ln -s ~/dotfiles/claude/commands ~/.claude/commands
@@ -222,6 +223,7 @@ ln -s ~/dotfiles/uv/tools.txt ~/.config/uv/tools.txt
 ```bash
 cd ~/dotfiles
 git pull
+git submodule update --init --recursive  # refresh the claude/ submodule
 make install  # Re-run to install any new files
 ```
 
