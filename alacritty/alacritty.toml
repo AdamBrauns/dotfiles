@@ -57,3 +57,4 @@ option_as_alt = "Both"
 opacity = 0.9
 padding = { x = 20, y = 20 }
 title = ""
+dynamic_title = false
