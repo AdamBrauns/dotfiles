@@ -56,8 +56,10 @@ readonly DIR_PERMISSIONS=700
 readonly FILE_PERMISSIONS=600
 
 # Symlink map: "type|relative_source|absolute_target"
-#   type "required" — always link; error if source is missing
-#   type "optional" — link only if source exists (e.g. local/secret files)
+#   type "required"  — always link; error if source is missing
+#   type "optional"  — link only if source exists (e.g. local/secret files)
+#   type "submodule" — lives in a git submodule; link if present, else warn and
+#                      skip (handles uninitialized or inaccessible submodules)
 SYMLINK_MAP=(
   "required|alacritty|$HOME/.config/alacritty"
   "required|ansible/ansible-lint|$HOME/.ansible-lint"
@@ -68,11 +70,11 @@ SYMLINK_MAP=(
   "required|bash/bash_profile|$HOME/.bash_profile"
   "required|bash/bashrc|$HOME/.bashrc"
   "required|bash/shellcheckrc|$HOME/.shellcheckrc"
-  "required|claude/CLAUDE.md|$HOME/.claude/CLAUDE.md"
-  "required|claude/settings.json|$HOME/.claude/settings.json"
-  "required|claude/commands|$HOME/.claude/commands"
-  "required|claude/skills|$HOME/.claude/skills"
-  "required|claude/hooks|$HOME/.claude/hooks"
+  "submodule|claude/CLAUDE.md|$HOME/.claude/CLAUDE.md"
+  "submodule|claude/settings.json|$HOME/.claude/settings.json"
+  "submodule|claude/agents|$HOME/.claude/agents"
+  "submodule|claude/skills|$HOME/.claude/skills"
+  "submodule|claude/hooks|$HOME/.claude/hooks"
   "optional|deck/deck.secret.yaml|$HOME/.deck.yaml"
   "optional|git/gitconfig.secret.gitconfig|$HOME/.gitconfig"
   "optional|git/gitconfig.personal.secret.gitconfig|$HOME/.gitconfig.personal"
@@ -155,6 +157,31 @@ check_dependencies() {
   fi
 
   log_info "All dependencies are available."
+}
+
+# Initialize git submodules (best-effort). The claude/ config lives in a private
+# submodule; a clone without --recurse-submodules leaves it empty. We try to
+# populate it here so the owner's install "just works", and degrade to a warning
+# (rather than a hard failure) for anyone without access or working from a tarball.
+ensure_submodules() {
+  [[ -f "$DOTFILES_DIR/.gitmodules" ]] || return 0
+
+  if ! command -v git &>/dev/null; then
+    log_warning "git not found — cannot initialize submodules; submodule-backed configs will be skipped."
+    return 0
+  fi
+
+  if [[ "$DRY_RUN" == true ]]; then
+    log_dry_run "Would run: git submodule update --init --recursive"
+    return 0
+  fi
+
+  log_info "Initializing git submodules..."
+  if git -C "$DOTFILES_DIR" submodule update --init --recursive 2>/dev/null; then
+    log_info "Submodules initialized."
+  else
+    log_warning "Could not initialize submodules (no access or offline) — submodule-backed configs will be skipped."
+  fi
 }
 
 # Cross-platform symlink resolution: prefers realpath, falls back to readlink -f,
@@ -334,6 +361,9 @@ install() {
   [[ "$DRY_RUN" == true ]] && echo -e "${YELLOW}=== DRY RUN MODE - No changes will be made ===${NC}\n"
   log_info "Starting dotfiles installation from: $DOTFILES_DIR"
 
+  # Populate submodules (e.g. private claude/ config) before linking into them
+  ensure_submodules
+
   # Ensure secure directories exist before linking into them
   ensure_secure_directory "$HOME/.gnupg"
   ensure_secure_directory "$HOME/.ssh"
@@ -345,15 +375,26 @@ install() {
     local target="${rest##*|}"
     local source="$DOTFILES_DIR/$rel_source"
 
-    if [[ "$type" == "optional" ]]; then
-      if [[ -f "$source" ]]; then
+    case "$type" in
+      optional)
+        if [[ -f "$source" ]]; then
+          create_symlink "$source" "$target" || true
+        else
+          log_warning "$(basename "$source") not found — copy the .example and customize it."
+        fi
+        ;;
+      submodule)
+        if [[ -e "$source" ]]; then
+          create_symlink "$source" "$target" || true
+        else
+          log_warning "$(basename "$source") unavailable (submodule not initialized) — skipping."
+          LINKS_SKIPPED=$(( LINKS_SKIPPED + 1 ))
+        fi
+        ;;
+      *)
         create_symlink "$source" "$target" || true
-      else
-        log_warning "$(basename "$source") not found — copy the .example and customize it."
-      fi
-    else
-      create_symlink "$source" "$target" || true
-    fi
+        ;;
+    esac
   done
 
   # Ensure SSH config has correct permissions after linking
