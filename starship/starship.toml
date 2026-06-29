@@ -40,9 +40,8 @@ truncation_length = 3
 truncation_symbol = ''
 
 [git_branch]
-ignore_branches = ['main', 'master']
 style = 'bold purple'
-symbol = '🌱 '
+symbol = '🌿 '
 
 [git_commit]
 commit_hash_length = 8
