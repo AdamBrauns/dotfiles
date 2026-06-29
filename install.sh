@@ -72,6 +72,7 @@ SYMLINK_MAP=(
   "required|bash/shellcheckrc|$HOME/.shellcheckrc"
   "submodule|claude/CLAUDE.md|$HOME/.claude/CLAUDE.md"
   "submodule|claude/settings.json|$HOME/.claude/settings.json"
+  "submodule|claude/statusline.sh|$HOME/.claude/statusline.sh"
   "submodule|claude/agents|$HOME/.claude/agents"
   "submodule|claude/skills|$HOME/.claude/skills"
   "submodule|claude/hooks|$HOME/.claude/hooks"
