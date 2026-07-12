@@ -1,7 +1,6 @@
 {
     "ansible.lightspeed.enabled": false,
     "ansible.lightspeed.suggestions.enabled": false,
-    "ansible.validation.lint.arguments": "-c ${env:HOME}/.ansible-lint",
     "breadcrumbs.enabled": false,
     "chat.viewSessions.orientation": "stacked",
     "cSpell.userWords": [
