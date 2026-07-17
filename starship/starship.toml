@@ -39,6 +39,9 @@ style = 'bold cyan'
 truncation_length = 3
 truncation_symbol = ''
 
+[docker_context]
+disabled = true
+
 [git_branch]
 style = 'bold purple'
 symbol = '🌿 '

@@ -30,6 +30,8 @@ brew "fastfetch"
 brew "fortune"
 # Command-line fuzzy finder written in Go
 brew "fzf"
+# GitHub command-line tool
+brew "gh"
 # Audit git repos for secrets
 brew "gitleaks"
 # GNU Privacy Guard (OpenPGP)
@@ -56,10 +58,14 @@ brew "pandoc"
 brew "pnpm"
 # Perl-powered file rename script with many helpful built-ins
 brew "rename"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
 # Autoformat shell script source code
 brew "shfmt"
+# Work with remote images registries
+brew "skopeo"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Terminal multiplexer
@@ -92,8 +98,6 @@ cask "claude"
 cask "claude-code@latest"
 # OpenAI's coding agent that runs in your terminal
 cask "codex"
-# OpenAI's Codex desktop app for managing coding agents
-cask "codex-app"
 # Desktop client for Ente Auth
 cask "ente-auth"
 # Web browser
@@ -151,5 +155,6 @@ vscode "streetsidesoftware.code-spell-checker"
 uv "httpie"
 uv "magic-wormhole"
 uv "pre-commit"
+uv "pyright"
 uv "ruff"
 uv "speedtest-cli"
