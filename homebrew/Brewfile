@@ -2,6 +2,7 @@ tap "anthropics/tap"
 tap "homebrew/bundle"
 tap "kong/deck", trusted: true
 tap "kong/kongctl"
+tap "sane-apps/tap"
 tap "supabase/tap", trusted: true
 tap "typewhisper/tap", trusted: true
 # Official Amazon AWS command-line interface
@@ -102,8 +103,6 @@ cask "codex"
 cask "ente-auth"
 # Web browser
 cask "firefox"
-# Utility to hide menu bar items
-cask "hiddenbar"
 # Companion app for Home Assistant home automation software
 cask "home-assistant"
 # Convert your caps lock key or any of your modifier keys to the hyper key
@@ -120,6 +119,8 @@ cask "logi-options+"
 cask "netnewswire"
 # Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
+# Tame your macOS menu bar — hide, organize, and search your icons
+cask "sane-apps/tap/sanebar", trusted: true
 # Tool that provides consistent, highly configurable symbols for apps
 cask "sf-symbols"
 # Screenshot measurement and annotation tool
