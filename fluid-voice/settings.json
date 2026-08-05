@@ -1,0 +1,509 @@
+{
+  "appPromptBindings" : [
+
+  ],
+  "appVersion" : "1.6.7",
+  "exportedAt" : "2026-08-05T21:48:03Z",
+  "promptProfiles" : [
+
+  ],
+  "pronunciationProfiles" : [
+
+  ],
+  "schemaVersion" : {
+    "major" : 1,
+    "minor" : 0
+  },
+  "settings" : {
+    "accentColorOption" : "Blue",
+    "audioHistoryBudgetGB" : 4,
+    "autoConvertPunctuationEnabled" : true,
+    "autoUpdateCheckEnabled" : false,
+    "automaticDictionaryLearningEnabled" : true,
+    "betaReleasesEnabled" : false,
+    "cancelRecordingHotkeyShortcut" : {
+      "keyCode" : 53,
+      "kind" : "keyboard",
+      "modifierFlagsRawValue" : 0
+    },
+    "commandModeConfirmBeforeExecute" : true,
+    "commandModeLinkedToGlobal" : true,
+    "commandModeSelectedProviderID" : "",
+    "commandModeShortcutEnabled" : false,
+    "contextAwareCapitalizationEnabled" : false,
+    "continuousDictationModeEnabled" : false,
+    "continuousDictationSpacingEnabled" : false,
+    "copyTranscriptionToClipboard" : false,
+    "customDictionaryEntries" : [
+
+    ],
+    "dictationPromptOff" : true,
+    "dictationPromptRoutingScope" : "allApps",
+    "editPromptOff" : false,
+    "editPromptRoutingScope" : "allApps",
+    "enableAIStreaming" : true,
+    "enableDebugLogs" : false,
+    "enableStreamingPreview" : true,
+    "fillerWords" : [
+      "um",
+      "uh",
+      "er",
+      "ah",
+      "eh",
+      "umm",
+      "uhh",
+      "err",
+      "ahh",
+      "ehh",
+      "hmm",
+      "hm",
+      "mm",
+      "mmm",
+      "erm",
+      "urm",
+      "ugh"
+    ],
+    "gaavLowercaseFirstLetterEnabled" : false,
+    "gaavModeEnabled" : false,
+    "gaavRemoveTrailingPeriodEnabled" : false,
+    "hideFromDockAndAppSwitcher" : false,
+    "hotkeyMode" : "toggle",
+    "hotkeyShortcut" : {
+      "keyCode" : 61,
+      "kind" : "keyboard",
+      "modifierFlagsRawValue" : 0,
+      "modifierKeyCodes" : [
+        61
+      ]
+    },
+    "literalDictationFormattingEnabled" : true,
+    "microphoneSelectionMode" : "manual",
+    "modelReasoningConfigs" : {
+
+    },
+    "notifyAIProcessingFailures" : true,
+    "overlayBottomOffset" : 50,
+    "overlayPosition" : "bottom",
+    "overlaySize" : "medium",
+    "pasteLastTranscriptionShortcutEnabled" : false,
+    "pauseMediaDuringTranscription" : false,
+    "preferredInputDeviceUID" : "AppleUSBAudioEngine:Generic:Blue Microphones:201701110001:1",
+    "preferredOutputDeviceUID" : "BuiltInSpeakerDevice",
+    "pressAndHoldMode" : false,
+    "primaryDictationShortcuts" : [
+      {
+        "keyCode" : 61,
+        "kind" : "keyboard",
+        "modifierFlagsRawValue" : 0,
+        "modifierKeyCodes" : [
+          61
+        ]
+      }
+    ],
+    "privateAIBackendPreference" : "mlx",
+    "privateAIBoostEnabled" : true,
+    "privateAIContextTokenLimit" : 4096,
+    "privateAIPrefixKVCacheEnabled" : true,
+    "promptModeHotkeyShortcut" : {
+      "keyCode" : 60,
+      "kind" : "keyboard",
+      "modifierFlagsRawValue" : 0,
+      "modifierKeyCodes" : [
+        60
+      ]
+    },
+    "promptModeShortcutEnabled" : false,
+    "pronunciationMatchingEnabled" : false,
+    "punctuationDictionaryPrefix" : "literal",
+    "punctuationDictionaryRules" : [
+      {
+        "aliases" : [
+          "comma"
+        ],
+        "id" : "209D2D0C-7DFF-48A5-9D45-AED981034546",
+        "symbol" : ","
+      },
+      {
+        "aliases" : [
+          "period",
+          "full stop"
+        ],
+        "id" : "75AC8480-8686-4FE3-AE27-1ADBED94A1AA",
+        "symbol" : "."
+      },
+      {
+        "aliases" : [
+          "dot"
+        ],
+        "id" : "64A7AEC6-FE9C-46DD-881C-595F51295677",
+        "symbol" : "."
+      },
+      {
+        "aliases" : [
+          "question mark",
+          "questionmark"
+        ],
+        "id" : "D201008D-8DCA-4C82-91A9-B64C81185B2B",
+        "symbol" : "?"
+      },
+      {
+        "aliases" : [
+          "exclamation mark",
+          "exclamation point",
+          "bang"
+        ],
+        "id" : "489348F8-7DBB-4421-9528-9E797EECC62A",
+        "symbol" : "!"
+      },
+      {
+        "aliases" : [
+          "colon"
+        ],
+        "id" : "FB60E732-1923-4BC1-BFB7-C3DDCD8036A9",
+        "symbol" : ":"
+      },
+      {
+        "aliases" : [
+          "semicolon",
+          "semi colon"
+        ],
+        "id" : "62E5B67B-BD06-4E3D-84D1-A840415ACE81",
+        "symbol" : ";"
+      },
+      {
+        "aliases" : [
+          "ellipsis",
+          "dot dot dot",
+          "three dots"
+        ],
+        "id" : "78941807-3802-4AA1-BA0D-22D83605E2FD",
+        "symbol" : "..."
+      },
+      {
+        "aliases" : [
+          "slash",
+          "forward slash",
+          "forwardslash"
+        ],
+        "id" : "AE54D189-EC3C-4D42-A5FA-775E23933925",
+        "symbol" : "\/"
+      },
+      {
+        "aliases" : [
+          "backslash",
+          "back slash"
+        ],
+        "id" : "B0924D4E-7894-4495-A8D7-19501A60A60A",
+        "symbol" : "\\"
+      },
+      {
+        "aliases" : [
+          "hyphen"
+        ],
+        "id" : "EB215FD3-8EC4-4D4F-89EE-4529A11363DD",
+        "symbol" : "-"
+      },
+      {
+        "aliases" : [
+          "dash",
+          "minus sign"
+        ],
+        "id" : "26F2638F-488E-4481-9CFE-DE83C202053E",
+        "symbol" : "-"
+      },
+      {
+        "aliases" : [
+          "em dash",
+          "long dash"
+        ],
+        "id" : "23DAADDB-DD28-4A18-A395-D2BB42B5140D",
+        "symbol" : "—"
+      },
+      {
+        "aliases" : [
+          "en dash"
+        ],
+        "id" : "740E4C2D-FF39-4488-A143-F464561C20AC",
+        "symbol" : "–"
+      },
+      {
+        "aliases" : [
+          "open parenthesis",
+          "open parentheses",
+          "left parenthesis",
+          "left parentheses",
+          "open paren",
+          "left paren"
+        ],
+        "id" : "D5CC9D20-6112-4783-B05B-9670B4069064",
+        "symbol" : "("
+      },
+      {
+        "aliases" : [
+          "close parenthesis",
+          "close parentheses",
+          "right parenthesis",
+          "right parentheses",
+          "close paren",
+          "right paren"
+        ],
+        "id" : "477C76C8-D7F8-40CA-A156-136E219B7BA0",
+        "symbol" : ")"
+      },
+      {
+        "aliases" : [
+          "open bracket",
+          "left bracket",
+          "open square bracket",
+          "left square bracket"
+        ],
+        "id" : "358F31EF-6A52-413C-BDBF-1B989E281C9D",
+        "symbol" : "["
+      },
+      {
+        "aliases" : [
+          "close bracket",
+          "right bracket",
+          "close square bracket",
+          "right square bracket"
+        ],
+        "id" : "09FF22EB-471A-4141-B2C8-59261FE3D9B7",
+        "symbol" : "]"
+      },
+      {
+        "aliases" : [
+          "open brace",
+          "left brace",
+          "open curly brace",
+          "left curly brace",
+          "open curly bracket",
+          "left curly bracket"
+        ],
+        "id" : "9CAE1A7B-F962-489E-A950-E2929D917AB1",
+        "symbol" : "{"
+      },
+      {
+        "aliases" : [
+          "close brace",
+          "right brace",
+          "close curly brace",
+          "right curly brace",
+          "close curly bracket",
+          "right curly bracket"
+        ],
+        "id" : "92E6FEC8-5CCB-481B-8780-6B3A2D0B410E",
+        "symbol" : "}"
+      },
+      {
+        "aliases" : [
+          "open angle bracket",
+          "left angle bracket",
+          "less than sign"
+        ],
+        "id" : "BD8098D5-D041-4B2E-8179-89054F5E9453",
+        "symbol" : "<"
+      },
+      {
+        "aliases" : [
+          "close angle bracket",
+          "right angle bracket",
+          "greater than sign"
+        ],
+        "id" : "4A33AA67-88E4-40AF-9404-7D4893E3DF6C",
+        "symbol" : ">"
+      },
+      {
+        "aliases" : [
+          "quote",
+          "quotes",
+          "quotation mark",
+          "double quote"
+        ],
+        "id" : "41D8EAA1-1584-4428-B122-42D9C420A48C",
+        "symbol" : "\""
+      },
+      {
+        "aliases" : [
+          "open quote",
+          "opening quote",
+          "open double quote",
+          "opening double quote"
+        ],
+        "id" : "FE96B5C2-D6CD-40C1-ABA8-56B15D19D51C",
+        "symbol" : "\""
+      },
+      {
+        "aliases" : [
+          "close quote",
+          "closing quote",
+          "close double quote",
+          "closing double quote"
+        ],
+        "id" : "AA25141F-1926-41AB-A20C-731F559248D6",
+        "symbol" : "\""
+      },
+      {
+        "aliases" : [
+          "single quote"
+        ],
+        "id" : "5E3A3455-EB9F-490E-B64F-C00B8F215F8D",
+        "symbol" : "'"
+      },
+      {
+        "aliases" : [
+          "apostrophe"
+        ],
+        "id" : "963A4478-6E29-4376-AF95-C48D3500D409",
+        "symbol" : "'"
+      },
+      {
+        "aliases" : [
+          "at the rate",
+          "at sign",
+          "commercial at"
+        ],
+        "id" : "05D23828-D32A-4A1D-A73F-14FF03943A5F",
+        "symbol" : "@"
+      },
+      {
+        "aliases" : [
+          "ampersand",
+          "and sign"
+        ],
+        "id" : "8883AB83-164C-43F3-9610-347501EB4CA3",
+        "symbol" : "&"
+      },
+      {
+        "aliases" : [
+          "plus sign",
+          "plus"
+        ],
+        "id" : "9667084E-95C3-4B9F-B989-19F8433EA0D7",
+        "symbol" : "+"
+      },
+      {
+        "aliases" : [
+          "equals sign",
+          "equal sign",
+          "equal",
+          "equals"
+        ],
+        "id" : "55ADEF71-3CED-49C3-B47C-6DF97DB2A66F",
+        "symbol" : "="
+      },
+      {
+        "aliases" : [
+          "percent sign",
+          "percentage sign",
+          "percent"
+        ],
+        "id" : "0377AFF7-4DE4-43CA-A813-57E20BDBBB12",
+        "symbol" : "%"
+      },
+      {
+        "aliases" : [
+          "dollar sign",
+          "dollar"
+        ],
+        "id" : "A4417979-998F-4595-88BC-BAAB577BA472",
+        "symbol" : "$"
+      },
+      {
+        "aliases" : [
+          "hash",
+          "hash sign",
+          "hashtag",
+          "pound sign",
+          "number sign"
+        ],
+        "id" : "78DAE395-AE35-4A8C-BEAE-AC07B4345302",
+        "symbol" : "#"
+      },
+      {
+        "aliases" : [
+          "asterisk",
+          "star symbol"
+        ],
+        "id" : "1C5C7B93-8D21-4B58-8D1D-AE26390770DF",
+        "symbol" : "*"
+      },
+      {
+        "aliases" : [
+          "underscore"
+        ],
+        "id" : "25307065-3B13-4092-993D-8CB54D1D0573",
+        "symbol" : "_"
+      },
+      {
+        "aliases" : [
+          "pipe",
+          "vertical bar"
+        ],
+        "id" : "E1C02AE9-4F8D-4D4A-B19C-2E59A85FE415",
+        "symbol" : "|"
+      },
+      {
+        "aliases" : [
+          "tilde"
+        ],
+        "id" : "42C4A3E4-FD02-426B-8277-F45D650CBC06",
+        "symbol" : "~"
+      },
+      {
+        "aliases" : [
+          "caret"
+        ],
+        "id" : "2DA81173-8B1B-42E5-B146-6246B12EC513",
+        "symbol" : "^"
+      },
+      {
+        "aliases" : [
+          "backtick",
+          "back tick"
+        ],
+        "id" : "8C77E304-0488-46A1-AE3A-0D9203A77FFA",
+        "symbol" : "`"
+      }
+    ],
+    "removeFillerWordsEnabled" : true,
+    "rewriteModeHotkeyShortcut" : {
+      "keyCode" : 15,
+      "kind" : "keyboard",
+      "modifierFlagsRawValue" : 524288
+    },
+    "rewriteModeLinkedToGlobal" : true,
+    "rewriteModeSelectedProviderID" : "",
+    "rewriteModeShortcutEnabled" : false,
+    "saveAudioWithTranscriptionHistory" : false,
+    "saveTranscriptionHistory" : false,
+    "savedProviders" : [
+
+    ],
+    "secondaryDictationPromptOff" : true,
+    "selectedAppleSpeechLocaleIdentifier" : "en-US",
+    "selectedCohereLanguage" : "en",
+    "selectedModelByProvider" : {
+      "custom:fluid-1" : "fluid-1",
+      "fluid-1" : "fluid-1"
+    },
+    "selectedNemotronLanguage" : "en",
+    "selectedProviderID" : "fluid-1",
+    "selectedSpeechModel" : "parakeet-tdt-v2",
+    "shareAnonymousAnalytics" : false,
+    "showMainWindowAtLoginLaunch" : false,
+    "showThinkingTokens" : true,
+    "skipSilentRecordingsEnabled" : false,
+    "textInsertionMode" : "standard",
+    "transcriptionPreviewCharLimit" : 150,
+    "transcriptionSoundIndependentVolume" : false,
+    "transcriptionSoundVolume" : 0.5,
+    "transcriptionStartSound" : "fluid_sfx_0",
+    "userTypingWPM" : 40,
+    "visualizerNoiseThreshold" : 0.4,
+    "vocabularyBoostingEnabled" : false,
+    "weekendsDontBreakStreak" : true
+  },
+  "transcriptionHistory" : [
+
+  ]
+}

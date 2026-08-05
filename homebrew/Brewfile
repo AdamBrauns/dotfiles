@@ -4,7 +4,6 @@ tap "kong/deck", trusted: true
 tap "kong/kongctl"
 tap "sane-apps/tap"
 tap "supabase/tap", trusted: true
-tap "typewhisper/tap", trusted: true
 # Official Amazon AWS command-line interface
 brew "awscli"
 # Microsoft Azure CLI 2.0
@@ -103,6 +102,8 @@ cask "codex"
 cask "ente-auth"
 # Web browser
 cask "firefox"
+# Offline voice-to-text dictation app with AI enhancement
+cask "fluidvoice"
 # Companion app for Home Assistant home automation software
 cask "home-assistant"
 # Convert your caps lock key or any of your modifier keys to the hyper key
@@ -133,8 +134,6 @@ cask "spotify"
 cask "stats"
 # To-do & task list manager
 cask "ticktick"
-# Speech-to-text and AI text processing
-cask "typewhisper/tap/typewhisper"
 # Virtual machines UI using QEMU
 cask "utm"
 # Open-source code editor

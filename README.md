@@ -18,6 +18,7 @@ dotfiles/
 ├── claude/                 # Claude Code config (private submodule)
 ├── deck/                   # Kong Deck configuration
 ├── firefox/                # Firefox browser configuration
+├── fluid-voice/            # Fluid Voice dictation settings export
 ├── git/                    # Git configuration (with .example templates)
 ├── gnupg/                  # GnuPG configuration
 ├── homebrew/               # Brewfile for package management
@@ -203,6 +204,7 @@ ln -s ~/dotfiles/deck/deck.secret.yaml ~/.deck.yaml  # optional
 
 # Link .config directory apps
 ln -s ~/dotfiles/alacritty ~/.config/alacritty
+ln -s ~/dotfiles/fluid-voice/settings.json ~/.config/fluid-voice/settings.json
 ln -s ~/dotfiles/rectangle ~/.config/rectangle
 ln -s ~/dotfiles/ruff ~/.config/ruff
 ln -s ~/dotfiles/starship/starship.toml ~/.config/starship.toml

@@ -79,6 +79,7 @@ SYMLINK_MAP=(
   "submodule|claude/skills|$HOME/.claude/skills"
   "submodule|claude/hooks|$HOME/.claude/hooks"
   "optional|deck/deck.secret.yaml|$HOME/.deck.yaml"
+  "required|fluid-voice/settings.json|$HOME/.config/fluid-voice/settings.json"
   "optional|git/gitconfig.secret.gitconfig|$HOME/.gitconfig"
   "optional|git/gitconfig.personal.secret.gitconfig|$HOME/.gitconfig.personal"
   "optional|git/gitconfig.work.secret.gitconfig|$HOME/.gitconfig.work"
