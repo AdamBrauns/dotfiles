@@ -48,8 +48,11 @@ alias cdpers='cd ${DIR_GIT_PERSONAL}'
 alias cdwork='cd ${DIR_GIT_WORK}'
 
 # Ansible
-alias ansdecrypt='ansible-vault decrypt'
-alias ansencrypt='ansible-vault encrypt'
+alias ansdec='ansible-vault decrypt'
+alias ansenc='ansible-vault encrypt'
+alias ansinv='ansible-inventory --graph'
+alias anslint='ansible-lint'
+alias ansplay='ansible-playbook'
 
 # Brew
 if command -v brew &> /dev/null; then
