@@ -73,7 +73,7 @@ SYMLINK_MAP=(
   "submodule|claude/CLAUDE.md|$HOME/.claude/CLAUDE.md"
   "submodule|claude/keybindings.json|$HOME/.claude/keybindings.json"
   "submodule|claude/settings.json|$HOME/.claude/settings.json"
-  "submodule|claude/statusline.sh|$HOME/.claude/statusline.sh"
+  "submodule|claude/scripts|$HOME/.claude/scripts"
   "submodule|claude/themes|$HOME/.claude/themes"
   "submodule|claude/agents|$HOME/.claude/agents"
   "submodule|claude/skills|$HOME/.claude/skills"
