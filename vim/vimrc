@@ -7,13 +7,26 @@
 " Disable compatibility with vi
 set nocompatible
 
+" Leader
+let mapleader = ' '
+nnoremap <Space> <Nop>
+
 " Enable plugins and load plugin/indent for the detected file type
 filetype plugin indent on
 
 " Syntax highlighting
 syntax on
 
-" Line numbers
+" Bundled optional packages (ship with Vim, no plugin manager needed)
+packadd! editorconfig " honor per-repo .editorconfig
+packadd! matchit      " extend % to tags and language keywords
+packadd! comment      " gc / gcc comment operator
+packadd! nohlsearch   " clear search highlight on move
+packadd! hlyank       " briefly highlight the yanked text
+packadd! cfilter      " :Cfilter to narrow quickfix
+
+" Line numbers (hybrid: absolute on the cursor line, relative elsewhere)
+set number
 set relativenumber
 
 " Status bar status
@@ -22,8 +35,14 @@ set laststatus=2
 " Show file stats
 set ruler
 
-" Blink cursor on error instead of beeping
-set visualbell
+" Set the terminal title
+set title
+
+" Skip the intro message
+set shortmess+=I
+
+" Silence the bell entirely
+set belloff=all
 
 " Encoding
 set encoding=utf-8
@@ -31,30 +50,57 @@ set encoding=utf-8
 " Parsing and execution of modelines
 set modelines=0
 
-" Optimize Vim
-set ttyfast
-
 " Keep 3 lines above/below when scrolling
 set scrolloff=3
 
 " Keep 5 chars left/right when scrolling
 set sidescrolloff=5
 
-" Exclude line number when copying with mouse
-set mouse+=a
+" Hand the mouse to Vim (use Option-drag for a terminal-native selection)
+set mouse=a
 
 " Backspace motion
 set backspace=indent,eol,start
 
-" Match brackets
-set matchpairs+=<:> " use % to jump between pairs
+" Keep unsaved buffers alive in the background
+set hidden
 
-" Do not skip wrapped lines
-nnoremap j gj
-nnoremap k gk
+" Reload files changed outside of Vim
+set autoread
 
-" Show mode and cmd
-set showmode
+" Prompt instead of failing on unsaved changes
+set confirm
+
+" Use the system clipboard for yank/put
+set clipboard=unnamed
+
+" Ctrl-A on 007 should give 008, not 010
+set nrformats-=octal
+
+" Faster CursorHold and a snappy Esc out of insert mode
+set updatetime=250
+set ttimeoutlen=10
+
+" Command-line completion
+set wildmode=longest:full,full
+set wildignorecase
+set wildoptions=pum
+set wildignore+=*/.git/*,*/node_modules/*,*/.venv/*,*/__pycache__/*
+
+" Search downward through the tree with :find
+set path+=**
+
+" Open splits below and to the right
+set splitbelow
+set splitright
+
+" Do not skip wrapped lines, but keep counts linewise
+nnoremap <expr> j v:count ? 'j' : 'gj'
+nnoremap <expr> k v:count ? 'k' : 'gk'
+xnoremap <expr> j v:count ? 'j' : 'gj'
+xnoremap <expr> k v:count ? 'k' : 'gk'
+
+" Show cmd
 set showcmd
 
 " Searching
@@ -62,27 +108,63 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-set showmatch
 nnoremap / /\v
-vnoremap / /\v
+nnoremap ? ?\v
+xnoremap / /\v
+xnoremap ? ?\v
+nnoremap <silent> <leader><Space> :nohlsearch<CR>
 
 " White space
 set wrap
-set textwidth=80
-set formatoptions=tcqrn1
+set linebreak
+set breakindent
+set display+=lastline
+" No 't': never auto-wrap while typing. 'j': drop comment leaders when joining
+set formatoptions=cqrn1j
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
-set noshiftround
-set display+=lastline
-set linebreak
+
+" Always end the file with a newline (default, but be explicit)
+set fixendofline
+
+" Make invisible characters visible
+set list
+set listchars=tab:▸\ ,trail:·,nbsp:␣,extends:❯,precedes:❮
+
+" Persistent undo, and keep swap files out of the working tree
+if !isdirectory(expand('~/.vim/undo'))
+  call mkdir(expand('~/.vim/undo'), 'p', 0700)
+endif
+if !isdirectory(expand('~/.vim/swap'))
+  call mkdir(expand('~/.vim/swap'), 'p', 0700)
+endif
+set undofile
+set undodir=~/.vim/undo//
+set directory=~/.vim/swap//
+set nobackup
+set nowritebackup
+
+" File type overrides
+augroup vimrc_ft
+  autocmd!
+  " ftplugins set formatoptions and textwidth per buffer, so override them after
+  autocmd FileType * setlocal formatoptions-=t formatoptions+=jrn1 textwidth=0
+  autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+  autocmd FileType make setlocal noexpandtab
+  autocmd FileType markdown setlocal spell
+  " Restore the last cursor position, except in commit messages
+  autocmd BufReadPost *
+        \ if line("'\"") >= 1 && line("'\"") <= line('$') && &filetype !~# 'commit'
+        \ |   execute 'normal! g`"'
+        \ | endif
+augroup END
 
 " Color scheme (terminal)
-set t_Co=256
+if has('termguicolors')
+  set termguicolors
+endif
 set background=dark
-let g:solarized_termcolors=256
-let g:solarized_termtrans=1
-" put https://raw.github.com/altercation/vim-colors-solarized/master/colors/solarized.vim
-" in ~/.vim/colors/ and uncomment:
-" colorscheme solarized
+colorscheme habamax
