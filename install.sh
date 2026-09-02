@@ -83,6 +83,7 @@ SYMLINK_MAP=(
   "optional|git/gitconfig.secret.gitconfig|$HOME/.gitconfig"
   "optional|git/gitconfig.personal.secret.gitconfig|$HOME/.gitconfig.personal"
   "optional|git/gitconfig.work.secret.gitconfig|$HOME/.gitconfig.work"
+  "required|ghostty|$HOME/.config/ghostty"
   "required|gnupg/gpg-agent.conf|$HOME/.gnupg/gpg-agent.conf"
   "required|homebrew/Brewfile|$HOME/.Brewfile"
   "required|rectangle|$HOME/.config/rectangle"
