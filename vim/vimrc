@@ -162,9 +162,12 @@ augroup vimrc_ft
         \ | endif
 augroup END
 
-" Color scheme (terminal)
-if has('termguicolors')
-  set termguicolors
-endif
+" Color scheme: inherit the terminal palette instead of painting a true-color
+" scheme over it, so Vim matches the terminal theme and keeps its background
+" transparency. t_Co=16 keeps the default scheme on the 16 ANSI colors; at 256
+" it reaches for fixed xterm colors that ignore the palette. The default scheme
+" resets 'background' when it loads, so set it afterwards.
+set notermguicolors
+set t_Co=16
+colorscheme default
 set background=dark
-colorscheme habamax
