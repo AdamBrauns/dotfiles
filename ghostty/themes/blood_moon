@@ -39,3 +39,14 @@ cursor-text = #10100E
 # Selection — cool desaturated slate, clearly lifted off the background
 selection-background = #33313A
 selection-foreground = #E8E8E6
+
+# Search (Cmd+F) — candidate matches in the palette gold, the focused match in
+# the accent red so it reads as "the" hit; replaces Ghostty's yellow/peach defaults
+search-background = #FFD700
+search-foreground = #10100E
+search-selected-background = #C40233
+search-selected-foreground = #FFFAFA
+
+# Splits — divider in the selection slate; dim unfocused panes toward the background
+split-divider-color = #33313A
+unfocused-split-fill = #10100E

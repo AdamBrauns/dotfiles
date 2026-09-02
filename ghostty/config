@@ -13,7 +13,9 @@ command = /opt/homebrew/bin/bash
 
 # Shell integration forces a bar cursor at the prompt by default; keep the block.
 # Also stop it from pushing the working directory into the window title.
-shell-integration-features = no-cursor,no-title
+# ssh-env wraps `ssh` so remote hosts get TERM=xterm-256color (plus COLORTERM)
+# instead of xterm-ghostty, which they have no terminfo for.
+shell-integration-features = no-cursor,no-title,ssh-env
 
 # ------------------------------------------------------------------------------
 # Appearance
@@ -27,6 +29,11 @@ font-size = 20
 # Thicker glyph strokes to match how alacritty renders Menlo on macOS (0-255)
 font-thicken = true
 font-thicken-strength = 128
+
+# Blend text in linear space with a weight correction: removes the dark fringe
+# around colored glyphs on the dark background while keeping stroke weight close
+# to the macOS default. Revert to `native` if Menlo looks off.
+alpha-blending = linear-corrected
 
 cursor-style = block
 cursor-style-blink = false
@@ -57,6 +64,23 @@ macos-titlebar-proxy-icon = hidden
 # Padding between the window edge and the terminal grid (matches alacritty's 20px)
 window-padding-x = 20
 window-padding-y = 20
+# Spread the leftover sub-cell pixels across all four edges instead of piling
+# them on the right and bottom
+window-padding-balance = true
+
+# Save position, size, tabs, splits and each pane's cwd on every exit (not just
+# forced quits) so a Sparkle relaunch or reboot brings the layout back
+window-save-state = always
+
+# Cmd+Z / Cmd+Shift+T reopens a closed tab, split or window with its shell
+# intact for this long; each closed pane lingers in memory until it expires
+undo-timeout = 30s
+
+# ------------------------------------------------------------------------------
+# Splits
+# ------------------------------------------------------------------------------
+# Moving to a neighbouring pane keeps it zoomed instead of unzooming
+split-preserve-zoom = navigation
 
 # ------------------------------------------------------------------------------
 # Input
