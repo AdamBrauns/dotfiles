@@ -78,6 +78,7 @@ SYMLINK_MAP=(
   "submodule|claude/agents|$HOME/.claude/agents"
   "submodule|claude/skills|$HOME/.claude/skills"
   "submodule|claude/hooks|$HOME/.claude/hooks"
+  "required|colima/colima.yaml|$HOME/.colima/default/colima.yaml"
   "optional|deck/deck.secret.yaml|$HOME/.deck.yaml"
   "required|fluid-voice/settings.json|$HOME/.config/fluid-voice/settings.json"
   "optional|git/gitconfig.secret.gitconfig|$HOME/.gitconfig"
