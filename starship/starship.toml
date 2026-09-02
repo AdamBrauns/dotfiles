@@ -7,6 +7,9 @@
 # Allow slower modules up to 1s before timing out
 command_timeout = 1000
 
+# No blank line before the prompt; bashrc adds one for every prompt except the first and after `clear`
+add_newline = false
+
 [aws]
 format = 'on [$symbol($profile )(\($region\) )]($style)'
 style = 'bold blue'

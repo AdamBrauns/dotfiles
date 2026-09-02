@@ -26,6 +26,17 @@ shopt -s globstar     # ** matches files recursively
 # Initialize starship if available
 if command -v starship &> /dev/null; then
   eval "$(starship init bash)"
+
+  # Blank line before every prompt except the first one and the one after `clear`
+  # (starship's add_newline is all-or-nothing, so it is disabled in starship.toml)
+  __prompt_newline() {
+    if [[ -n $__prompt_seen ]]; then
+      printf '\n'
+    fi
+    __prompt_seen=1
+  }
+  PROMPT_COMMAND="__prompt_newline;${PROMPT_COMMAND}"
+  clear() { unset __prompt_seen; command clear "$@"; }
 fi
 
 # Source global definitions
