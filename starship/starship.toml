@@ -13,7 +13,7 @@ add_newline = false
 [aws]
 format = 'on [$symbol($profile )(\($region\) )]($style)'
 style = 'bold blue'
-symbol = '🌥️  '
+symbol = '🪣 '
 
 [battery]
 charging_symbol = '🔌 '
@@ -51,21 +51,21 @@ symbol = '🌿 '
 
 [git_commit]
 commit_hash_length = 8
-tag_symbol = '🏷  '
+tag_symbol = '🔖 '
 
 [git_status]
 format = '([$all_status$ahead_behind]($style))'
-ahead = '🏎️💨×${count} '
+ahead = '🚀×${count} '
 behind = '🐢×${count} '
-conflicted = '🖇️ '
-deleted = '🗑️ ×${count} '
-diverged = '🔱 🏎️💨×${ahead_count} 🐢×${behind_count} '
+conflicted = '💥 '
+deleted = '🧹×${count} '
+diverged = '🔱 🚀×${ahead_count} 🐢×${behind_count} '
 modified = '📝×${count} '
 renamed = '📛×${count} '
-staged = '🗃️ ×${count} '
-stashed = '📦 '
+staged = '📦×${count} '
+stashed = '💾 '
 style = 'bold green'
-untracked = '🛤️ ×${count} '
+untracked = '🚧×${count} '
 up_to_date = ''
 
 [nodejs]
