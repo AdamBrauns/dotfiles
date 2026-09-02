@@ -31,6 +31,10 @@ font-thicken-strength = 128
 cursor-style = block
 cursor-style-blink = false
 
+# Fading trail that follows the cursor between cells (see ./shaders)
+custom-shader = shaders/cursor_trail.glsl
+custom-shader-animation = true
+
 # Blank title (a space, since an empty value falls back to the program name)
 title = " "
 
