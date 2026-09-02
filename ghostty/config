@@ -80,3 +80,11 @@ copy-on-select = clipboard
 # ------------------------------------------------------------------------------
 # Ignore the terminal bell entirely: no title emoji, no dock bounce
 bell-features = no-system,no-audio,no-attention,no-title,no-border
+
+# ------------------------------------------------------------------------------
+# Updates
+# ------------------------------------------------------------------------------
+# Let Ghostty (Sparkle) own updates: notify when a release is out, install on
+# demand and relaunch cleanly. The Homebrew cask is marked auto_updates, so a
+# plain `brew upgrade` skips it; never use --greedy or the two will fight.
+auto-update = check
