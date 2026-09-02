@@ -55,6 +55,8 @@ dimensions = { columns = 100, lines = 35 }
 # Treat both Option keys as Alt/Meta so readline word-motions (Alt+f/b/d) work.
 option_as_alt = "Both"
 opacity = 0.9
+# Blur the content behind the window (macOS / KDE Wayland); requires opacity < 1.
+blur = true
 padding = { x = 20, y = 20 }
 title = ""
 dynamic_title = false

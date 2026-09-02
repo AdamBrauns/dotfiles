@@ -11,8 +11,9 @@
 # Run the Homebrew bash as the shell (matches alacritty's shell.program)
 command = /opt/homebrew/bin/bash
 
-# Shell integration forces a bar cursor at the prompt by default; keep the block
-shell-integration-features = no-cursor
+# Shell integration forces a bar cursor at the prompt by default; keep the block.
+# Also stop it from pushing the working directory into the window title.
+shell-integration-features = no-cursor,no-title
 
 # ------------------------------------------------------------------------------
 # Appearance
@@ -23,9 +24,15 @@ theme = blood_moon
 
 font-family = Menlo
 font-size = 20
+# Thicker glyph strokes to match how alacritty renders Menlo on macOS (0-255)
+font-thicken = true
+font-thicken-strength = 128
 
 cursor-style = block
 cursor-style-blink = false
+
+# Blank title (a space, since an empty value falls back to the program name)
+title = " "
 
 # ------------------------------------------------------------------------------
 # Window
@@ -34,6 +41,14 @@ cursor-style-blink = false
 window-width = 100
 window-height = 35
 background-opacity = 0.9
+# Blur what shows through the transparent background
+background-blur = true
+
+# Native MacOS titlebar
+macos-titlebar-style = native
+
+# Hide the working-directory folder icon macOS puts in the titlebar
+macos-titlebar-proxy-icon = hidden
 
 # Padding between the window edge and the terminal grid (matches alacritty's 20px)
 window-padding-x = 20
