@@ -96,15 +96,21 @@ make install
    # Edit deck/deck.secret.yaml with your Kong settings
    ```
 
-5. **SSH keys**: Add your SSH keys to `~/.ssh/` (they won't be tracked)
+5. **Ghostty window position** (optional): Pin new windows to a spot on your monitor:
+   ```bash
+   cp ghostty/config.secret.example ghostty/config.secret
+   # Edit ghostty/config.secret with the pixel position for your screen
+   ```
 
-6. **Pre-commit hooks** (optional): Install [gitleaks](https://github.com/gitleaks/gitleaks) and enable hooks:
+6. **SSH keys**: Add your SSH keys to `~/.ssh/` (they won't be tracked)
+
+7. **Pre-commit hooks** (optional): Install [gitleaks](https://github.com/gitleaks/gitleaks) and enable hooks:
    ```bash
    brew install gitleaks pre-commit
    pre-commit install
    ```
 
-7. **Source your shell**:
+8. **Source your shell**:
    ```bash
    source ~/.bashrc
    # or restart your terminal

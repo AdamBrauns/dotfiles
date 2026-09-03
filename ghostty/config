@@ -7,7 +7,6 @@
 # ------------------------------------------------------------------------------
 # Shell
 # ------------------------------------------------------------------------------
-
 # Run the Homebrew bash as the shell (matches alacritty's shell.program)
 command = /opt/homebrew/bin/bash
 
@@ -20,7 +19,6 @@ shell-integration-features = no-cursor,no-title,ssh-env
 # ------------------------------------------------------------------------------
 # Appearance
 # ------------------------------------------------------------------------------
-
 # Theme lives in ./themes and is found via ~/.config/ghostty/themes
 theme = blood_moon
 
@@ -48,7 +46,6 @@ title = " "
 # ------------------------------------------------------------------------------
 # Window
 # ------------------------------------------------------------------------------
-
 window-width = 100
 window-height = 35
 background-opacity = 0.9
@@ -68,9 +65,9 @@ window-padding-y = 20
 # them on the right and bottom
 window-padding-balance = true
 
-# Save position, size, tabs, splits and each pane's cwd on every exit (not just
-# forced quits) so a Sparkle relaunch or reboot brings the layout back
-window-save-state = always
+# Never restore the previous session (tabs, splits, cwd); every launch is a
+# single fresh window at the position set in config.secret (see Secret below)
+window-save-state = never
 
 # Cmd+Z / Cmd+Shift+T reopens a closed tab, split or window with its shell
 # intact for this long; each closed pane lingers in memory until it expires
@@ -112,3 +109,10 @@ bell-features = no-system,no-audio,no-attention,no-title,no-border
 # demand and relaunch cleanly. The Homebrew cask is marked auto_updates, so a
 # plain `brew upgrade` skips it; never use --greedy or the two will fight.
 auto-update = check
+
+# ------------------------------------------------------------------------------
+# Secret
+# ------------------------------------------------------------------------------
+# Machine-specific settings that stay out of git (see config.secret.example).
+# The ? makes a missing file a no-op, leaving the position unset.
+config-file = ?config.secret
