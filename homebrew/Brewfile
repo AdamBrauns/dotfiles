@@ -68,8 +68,6 @@ brew "yq"
 brew "kong/deck/deck"
 # Supabase CLI
 brew "supabase/tap/supabase"
-# GPU-accelerated terminal emulator
-cask "alacritty"
 # CLI for the Claude Platform
 cask "anthropics/tap/ant", trusted: true
 # Desktop password and login vault
@@ -90,6 +88,8 @@ cask "ente-auth"
 cask "firefox"
 # Offline voice-to-text dictation app with AI enhancement
 cask "fluidvoice"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
 # Companion app for Home Assistant home automation software
 cask "home-assistant"
 # Convert your caps lock key or any of your modifier keys to the hyper key
