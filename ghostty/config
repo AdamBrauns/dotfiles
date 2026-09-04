@@ -88,6 +88,9 @@ macos-option-as-alt = true
 # Send ESC CR on Shift+Enter (newline in readline-style prompts)
 keybind = shift+enter=text:\x1b\r
 
+# Drop the default Cmd+Enter fullscreen toggle
+keybind = cmd+enter=unbind
+
 # ------------------------------------------------------------------------------
 # Mouse & clipboard
 # ------------------------------------------------------------------------------
