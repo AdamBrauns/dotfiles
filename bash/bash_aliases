@@ -129,6 +129,12 @@ if command -v uv &> /dev/null; then
   alias uvclean='uv cache clean'
 fi
 
+# Varlock
+if command -v varlock &> /dev/null; then
+  alias vl='varlock'
+  alias vlr='varlock run --'
+fi
+
 # SSH
 alias sshpi='ssh ${HOST_PI}'
 alias sshprox='ssh ${HOST_PROX}'

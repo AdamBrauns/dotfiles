@@ -1,4 +1,5 @@
 tap "anthropics/tap"
+tap "dmno-dev/tap"
 tap "homebrew/bundle"
 tap "kong/deck", trusted: true
 tap "kong/kongctl"
@@ -60,6 +61,8 @@ brew "uv"
 brew "watch"
 # Process YAML, JSON, XML, CSV and properties documents from the CLI
 brew "yq"
+# varlock is a tool to load and validate .env files
+brew "dmno-dev/tap/varlock", trusted: true
 # Declarative configuration for Kong
 brew "kong/deck/deck"
 # Supabase CLI
