@@ -3,7 +3,6 @@ tap "dmno-dev/tap"
 tap "homebrew/bundle"
 tap "kong/deck", trusted: true
 tap "kong/kongctl"
-tap "sane-apps/tap"
 tap "supabase/tap", trusted: true
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
@@ -103,10 +102,10 @@ cask "kong/kongctl/kongctl", trusted: true
 cask "logi-options+"
 # Free and open-source RSS reader
 cask "netnewswire"
+# Desktop virtualization software
+cask "parallels"
 # Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
-# Tame your macOS menu bar — hide, organize, and search your icons
-cask "sane-apps/tap/sanebar", trusted: true
 # Tool that provides consistent, highly configurable symbols for apps
 cask "sf-symbols"
 # Screenshot measurement and annotation tool
@@ -119,8 +118,6 @@ cask "spotify"
 cask "stats"
 # To-do & task list manager
 cask "ticktick"
-# Virtual machines UI using QEMU
-cask "utm"
 # Open-source code editor
 cask "visual-studio-code"
 # Connect to Windows
