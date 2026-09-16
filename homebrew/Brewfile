@@ -2,7 +2,7 @@ tap "anthropics/tap"
 tap "dmno-dev/tap"
 tap "homebrew/bundle"
 tap "kong/deck", trusted: true
-tap "kong/kongctl"
+tap "kong/kongctl", trusted: { casks: ["kongctl"] }
 tap "supabase/tap", trusted: true
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
@@ -64,6 +64,8 @@ brew "yq"
 brew "dmno-dev/tap/varlock", trusted: true
 # Declarative configuration for Kong
 brew "kong/deck/deck"
+# Developer CLI for Kong
+brew "kong/kongctl/kongctl", trusted: true
 # Supabase CLI
 brew "supabase/tap/supabase"
 # CLI for the Claude Platform
@@ -96,8 +98,6 @@ cask "hyperkey"
 cask "insomnia"
 # Menu bar calendar
 cask "itsycal"
-# Developer CLI for Kong
-cask "kong/kongctl/kongctl", trusted: true
 # Software for Logitech devices
 cask "logi-options+"
 # Free and open-source RSS reader
