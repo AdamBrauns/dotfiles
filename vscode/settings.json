@@ -89,6 +89,8 @@
     "terminal.integrated.scrollback": 10000,
     "workbench.editor.empty.hint": "hidden",
     "yaml.customTags": [
+        "!file scalar",
+        "!ref scalar",
         "!secret scalar",
         "!unsafe scalar"
     ],
