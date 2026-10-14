@@ -32,6 +32,8 @@ brew "kubernetes-cli"
 brew "node"
 # Visual testing tool for MCP servers
 brew "mcp-inspector"
+# Deep clean and optimize your Mac
+brew "mole"
 # OpenShift command-line interface tools
 brew "openshift-cli"
 # Drop-in replacement for Terraform. Infrastructure as Code Tool
@@ -129,6 +131,7 @@ vscode "ms-python.python"
 vscode "ms-python.vscode-pylance"
 vscode "ms-python.vscode-python-envs"
 vscode "openai.chatgpt"
+vscode "openai.codex-audio"
 vscode "pomdtr.excalidraw-editor"
 vscode "redhat.ansible"
 vscode "redhat.vscode-yaml"
