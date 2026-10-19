@@ -3,4 +3,3 @@ magic-wormhole
 pre-commit
 pyright
 ruff
-speedtest-cli

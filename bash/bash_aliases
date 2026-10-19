@@ -19,6 +19,11 @@ alias skurt='exit'
 alias tm='tmux'
 alias yeet='rm'
 
+# Network speed test (built into macOS)
+if command -v networkQuality &> /dev/null; then
+  alias speedtest='networkQuality'
+fi
+
 # Rename files by replacing spaces/underscores with dashes and converting to lowercase
 alias rndir='rename "s/[ _]/-/g; y/A-Z/a-z/" * -f'
 
@@ -133,6 +138,11 @@ fi
 if command -v varlock &> /dev/null; then
   alias vl='varlock'
   alias vlr='varlock run --'
+fi
+
+# PNPM
+if command -v pnpm &> /dev/null; then
+  alias mcp-inspector='pnpm dlx @modelcontextprotocol/inspector'
 fi
 
 # SSH
